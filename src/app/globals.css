@@ -41,7 +41,6 @@ a:hover {
   animation: custom-pulse 5s ease-in-out infinite;
 }
 
-
 .mask-container {
   mask-image: url('/projects/proptik.svg');
   -webkit-mask-image: url('/projects/proptik.svg');
