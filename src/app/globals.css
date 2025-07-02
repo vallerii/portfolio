@@ -13,6 +13,66 @@ a:hover {
   transition: all 0.3s ease-in-out;
 }
 
+.sunnyShadow:hover {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 4px 2px #F9D44DCC, 0px 0px 16px 5px #f5b100;
+}
+.sunnyInnerShadow {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 4px 2px #F9D44DCC, 0px 0px 16px 5px #f5b100;
+}
+
+@keyframes custom-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+.custom-pulse {
+  animation: custom-pulse 5s ease-in-out infinite;
+}
+
+
+.mask-container {
+  mask-image: url('/projects/proptik.svg');
+  -webkit-mask-image: url('/projects/proptik.svg');
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  background-color: transparent;
+  position: absolute;
+  overflow: hidden;
+}
+
+.circle-animation {
+  background: radial-gradient(50% 38.42% at 50% 50%, #FFFFFF 0%, #4E53FF 35.58%, rgba(2, 2, 18, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  animation: moveCircle 4s linear infinite;
+  top: -50%;
+  left: -50%;
+}
+
+@keyframes moveCircle {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50%, -50%);
+  }
+}
+
+
 /* colors */
 
 /* 

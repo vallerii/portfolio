@@ -1,14 +1,14 @@
-import Image from "next/image";
+import { JSX } from "react";
 
 export default function ProjectCard({ title, description, role, stack, img }: {
   title: string;
   description: string;
   role: string;
   stack: string[];
-  img: string;
+  img: JSX.Element;
 }) {
   return (
-    <div className="space-y-3 h-full flex flex-col">
+    <div className="space-y-3 h-full flex flex-col relative">
       <div className="font-bold text-lg">{title}</div>
       <div className="text-sm text-zinc-400">{description}</div>
       <div className="text-xs text-zinc-500">Роль: {role}</div>
@@ -19,16 +19,7 @@ export default function ProjectCard({ title, description, role, stack, img }: {
           </span>
         ))}
       </div>
-      <div className="relative w-full h-full rounded-lg overflow-hidden">
-        <Image
-          src={img}
-          alt={title}
-          width={800}
-          height={600}
-          objectFit="cover"
-          className="rounded-md w-auto h-auto"
-        />
-      </div>
+      {img}
     </div>
   );
 }

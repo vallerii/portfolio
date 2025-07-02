@@ -14,7 +14,7 @@ export default function ProjectSmallCard({ title, stack, img }: {
           width={800}
           height={600}
           objectFit="cover"
-          className="rounded-md w-auto h-auto"
+          className="rounded-md w-full h-full"
         />
       </div>
       <div className="font-bold text-lg">{title}</div>      
