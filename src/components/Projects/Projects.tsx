@@ -89,10 +89,10 @@ const projects = {
     stack: ['Next.js', 'SendPulse', 'CSS Animation'],
     img: <>
         <div className='custom-pulse' >
-          <Image src={'/projects/super.png'} alt='super' width={'490'} height={'241'}  className='w-auto h-auto'/>
+          <Image src={'/projects/super.png'} alt='super' width={'490'} height={'241'}  className='w-auto h-auto mx-auto'/>
         </div>
         <div className='custom-pulse'>
-          <Image src={'/projects/trade.png'} alt='trade' width={'490'} height={'241'} className='w-auto h-auto'/>
+          <Image src={'/projects/trade.png'} alt='trade' width={'490'} height={'241'} className='w-auto h-auto mx-auto'/>
         </div>
     </>,
   },
@@ -131,12 +131,12 @@ export default function Projects() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="col-span-4 row-start-1 bg-[#001f41] rounded-xl p-4"
+          className="col-span-7 lg:col-span-4 row-start-1 bg-[#001f41] rounded-xl p-4"
         >
           <ProjectCard {...projects.oikia} />
         </motion.div>
 
-        <div className="col-span-1 row-start-1 flex flex-col gap-[20px]">
+        <div className="col-span-7 md:col-span-2 lg:col-span-1 lg:row-start-1 flex md:flex-col gap-[20px]">
           <motion.div
             custom={1}
             variants={itemVariants}
@@ -162,7 +162,7 @@ export default function Projects() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="col-span-2 row-start-1 bg-[#001f41] rounded-xl p-4"
+          className="col-span-7 md:col-span-5 lg:col-span-2 lg:row-start-1 bg-[#001f41] rounded-xl p-4"
         >
           <ProjectCard {...projects.landing} />
         </motion.div>
@@ -173,7 +173,7 @@ export default function Projects() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="col-span-4 row-start-2 flex gap-[8px] items-center justify-center font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] uppercase p-4"
+          className="col-span-7 md:col-span-4 lg:col-span-4 lg:row-start-2 flex gap-[8px] items-center justify-center font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] uppercase p-4"
         >
           <Link href={'/projects'} className="flex items-center gap-2">
             See more <FaArrowRight />
@@ -185,48 +185,52 @@ export default function Projects() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="col-start-5 col-span-3 row-start-2 row-end-4 bg-[#262D3C] rounded-xl p-4"
+          className="col-span-7 md:col-span-3 lg:col-start-5 col-span-3 lg:row-start-2 lg:row-end-4 bg-[#262D3C] rounded-xl p-4"
         >
           <ProjectCard {...projects.supertrade} />
         </motion.div>
 
         {/* Ряд 3 */}
-        <motion.div
-          custom={6}
-          variants={itemVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="col-span-1 row-start-3 bg-[#262D3C] rounded-xl p-4"
-        >
-          <ProjectSmallCard {...projects.pinta} />
-        </motion.div>
-        <motion.div
-          custom={7}
-          variants={itemVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="col-span-1 row-start-3 bg-[#182C40] rounded-xl p-4"
-        >
-          <ProjectSmallCard {...projects.blog} />
-        </motion.div>
-        <motion.div
-          custom={8}
-          variants={itemVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="col-span-1 row-start-3 bg-[#262D3C] rounded-xl p-4"
-        >
-          <ProjectSmallCard {...projects.dashboard} />
-        </motion.div>
-        <motion.div
-          custom={9}
-          variants={itemVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="col-span-1 row-start-3 bg-[#182C40] rounded-xl p-4"
-        >
-          <ProjectSmallCard {...projects.notifix} />
-        </motion.div>
+
+        <div className="col-span-7 lg:col-span-4 lg:row-start-3 grid grid-cols-2 md:grid-cols-4 gap-[20px]">
+          <motion.div
+            custom={6}
+            variants={itemVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="bg-[#262D3C] rounded-xl p-4"
+          >
+            <ProjectSmallCard {...projects.pinta} />
+          </motion.div>
+          <motion.div
+            custom={7}
+            variants={itemVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="bg-[#182C40] rounded-xl p-4"
+          >
+            <ProjectSmallCard {...projects.blog} />
+          </motion.div>
+          <motion.div
+            custom={8}
+            variants={itemVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="bg-[#262D3C] rounded-xl p-4"
+          >
+            <ProjectSmallCard {...projects.dashboard} />
+          </motion.div>
+          <motion.div
+            custom={9}
+            variants={itemVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="bg-[#182C40] rounded-xl p-4"
+          >
+            <ProjectSmallCard {...projects.notifix} />
+          </motion.div>
+        </div>
+        
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ const codeSnippets = [
   'const [state, setState] = useState(null);',
   '<motion.div animate={{ y: 0 }} />',
   'display: flex;',
+  '[].map((item) => <Card {...item} />)',
   'useEffect(() => {}, [])',
   'const fetchData = async () => {}',
   'transition: all 0.3s ease-in-out;',
@@ -66,7 +67,6 @@ export default function Intro() {
     };
   }, []);
 
-  // 🚿 Инфинит дождь кода
   useEffect(() => {
     if (!enableCodeRain) return;
 
@@ -139,7 +139,7 @@ export default function Intro() {
             {codeRain.map((item) => (
               <motion.div
                 key={item.id}
-                className="absolute top-[-50px] text-[12px] lg:text-[16px] font-mono"
+                className="absolute top-[-50px] text-[12px] lg:text-[16px] font-[family-name:var(--font-jetBrains)] "
                 style={{
                   left: `${item.left}%`,
                   background:
