@@ -118,13 +118,15 @@ export default function Intro() {
 
           {showText && (
             <motion.p
-              className="text-[16px] lg:text-[24px]  opacity-80"
+              className="text-[16px] lg:text-[24px] max-w-[800px] opacity-80"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              Frontend developer with 2+ years of experience building responsive, performant, and accessible websites
-              using React, Next.js, and Tailwind. Focused on clean, accessible, and animated UI. Passionate about user
+              Frontend developer with 2+ years of experience building websites
+              using React, Next.js, and Tailwind. 
+              
+              Focused on clean, accessible, and animated UI. Passionate about user
               experience and performance.
               <br />
               <br />

@@ -106,7 +106,7 @@ const itemVariants: Variants = {
     transition: {
       delay: i * 0.3,
       duration: 0.6,
-      ease: easeOut,  // вместо строки 'easeOut' — импорт из framer-motion
+      ease: easeOut,  
     }
   }),
 };
@@ -115,7 +115,7 @@ export default function Projects() {
   // Реф для всей сетки
   const containerRef = useRef(null);
   // Проверяем, в видимости ли контейнер (появился в середине экрана)
-  const isInView = useInView(containerRef, { margin: '-50% 0px -50% 0px', once: false });
+  const isInView = useInView(containerRef, { margin: '-50% 0px -100% 0px', once: false });
 
   return (
     <div
@@ -123,7 +123,7 @@ export default function Projects() {
       style={{ background: '' }}
       ref={containerRef}
     >
-      <h2 className="text-4xl font-bold mb-10 max-w-[1232px] mx-auto">My projects</h2>
+      <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold mb-10 max-w-[1232px] mx-auto text-center uppercase">My projects</h2>
       <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto">
         {/* Ряд 1 */}
         <motion.div

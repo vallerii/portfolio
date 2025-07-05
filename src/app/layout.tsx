@@ -2,6 +2,7 @@ import Footer from "@/ui/layout/footer";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 
 const jetBrains = JetBrains_Mono({
@@ -34,6 +35,10 @@ export default function RootLayout({
       <body
         className={`${jetBrains.variable} ${space.variable} ${inter.variable} antialiased`}
       >
+        <Script
+          src="https://platform.linkedin.com/badges/js/profile.js"
+          strategy="afterInteractive"
+        />
         {children}
         <Footer />
       </body>
