@@ -2,7 +2,7 @@
 
 import ProjectCard from '@/ui/wrappers/ProjectCard';
 import ProjectSmallCard from '@/ui/wrappers/ProjectSmallCard';
-import { easeOut, motion, useInView, Variants } from "framer-motion";
+import { easeOut, motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from "react";
@@ -115,16 +115,28 @@ export default function Projects() {
   // Реф для всей сетки
   const containerRef = useRef(null);
   // Проверяем, в видимости ли контейнер (появился в середине экрана)
-  const isInView = useInView(containerRef, { margin: '-50% 0px -100% 0px', once: false });
+  const isInView = useInView(containerRef, { margin: '-50% 0px -100% 0px', once: true });
+  const h2Ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: h2Ref,
+    offset: ['start 60%', 'end start'],
+  });
 
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   return (
     <div
-      className="backdrop-blur-[50px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative"
+      className="backdrop-blur-[50px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col justify-center items-center"
       style={{ background: '' }}
       ref={containerRef}
     >
-      <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold mb-10 max-w-[1232px] mx-auto text-center uppercase">My projects</h2>
-      <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto">
+      <motion.h2
+        ref={h2Ref}
+        style={{ opacity }}
+        className="text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
+      >
+        My projects
+      </motion.h2>      
+      <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto mt-[40px]">
         {/* Ряд 1 */}
         <motion.div
           custom={0}
