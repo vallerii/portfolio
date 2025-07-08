@@ -4,9 +4,7 @@ import ProjectCard from '@/ui/wrappers/ProjectCard';
 import ProjectSmallCard from '@/ui/wrappers/ProjectSmallCard';
 import { easeOut, motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRef } from "react";
-import { FaArrowRight } from "react-icons/fa";
 
 export const projects = {
   oikia: {
@@ -195,9 +193,7 @@ export default function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="col-span-7 md:col-span-4 lg:col-span-4 lg:row-start-2 flex gap-[8px] items-center justify-center font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] uppercase p-4"
         >
-          <Link href={'/projects'} className="flex items-center gap-2">
-            See more <FaArrowRight />
-          </Link>
+        
         </motion.div>
 
         <motion.div

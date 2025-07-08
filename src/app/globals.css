@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 body {
-  /* background: linear-gradient(135deg, #061329 0%, #142835 100% 100%); */
-  background: linear-gradient(135deg,rgb(3, 43, 37) 0%, #061329 70% 100%);
+  /* background: rgb(0, 17, 53) 061329; */
+  background: linear-gradient(135deg,rgb(10, 31, 148) 0%, rgb(0, 17, 53) 40% 100%);
   color: #FFF;
   font-family: Inter, Helvetica, sans-serif;
   overflow-x: hidden;

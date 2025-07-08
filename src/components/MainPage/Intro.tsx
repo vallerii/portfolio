@@ -3,6 +3,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Projects from './Projects';
+import { FaArrowRight } from 'react-icons/fa';
+import Link from 'next/link';
 
 const letters = 'Petropavlovska_Valeriia'.split('');
 
@@ -41,12 +43,12 @@ export default function Intro() {
     >  
       <motion.div
         ref={contentRef}
-        style={{ scale, opacity, y }}
+        style={{ scale, opacity, y , }}
         className="sticky top-0 h-screen pt-[30vh] flex flex-col items-start px-[16px] py-[20px] max-w-[1232px] mx-auto gap-[30px] lg:gap-[60px]"
       >
        
-        <h1 className="font-[family-name:var(--font-jetBrains)] text-[30px] lg:text-[40px] flex items-center flex-wrap">
-          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>&lt;&nbsp;</motion.span>}
+        <h1 className="font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] flex items-center flex-wrap uppercase">
+          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>&lt;</motion.span>}
 
           {showName &&
             letters.map((letter, index) => (
@@ -60,23 +62,34 @@ export default function Intro() {
               </motion.span>
             ))}
 
-          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>&nbsp;/&gt;</motion.span>}
+          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>/&gt;</motion.span>}
         </h1>
 
         {showText && (
-          <motion.p
-            className="text-[16px] lg:text-[24px] max-w-[800px] opacity-80"
+          <motion.div
+            className="text-[16px] lg:text-[24px] max-w-[930px] opacity-80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            Frontend developer with 2+ years of experience building responsive, performant, and accessible websites
-            using React, Next.js, and Tailwind. Focused on clean, accessible, and animated UI. Passionate about user
-            experience and performance.
+            Frontend developer with <strong>2+ years</strong> of experience building 
+            responsive, 
+            performant & 
+            accessible websites.
             <br />
+            {/* <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />React,</span>
+            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />Next.js,</span>
+            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />Tailwind,</span>
+            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />...</span> */}
+            {/* Focused on clean, accessible, and animated UI. Passionate about user
+            experience and performance. */}
             <br />
             Open to remote and freelance opportunities.
-          </motion.p>
+
+            <Link href={'#contact'} className="flex items-center gap-[8px] font-bold uppercase mt-[30px] lg:mt-[60px] ml-auto w-fit" >
+              <FaArrowRight />Contact me
+            </Link>
+          </motion.div>
         )}
       </motion.div>
       

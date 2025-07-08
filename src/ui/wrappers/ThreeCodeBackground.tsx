@@ -1,82 +1,90 @@
 'use client';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
-import { useRef } from 'react';
+
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useRef, useMemo } from 'react';
 
-const codeLines = [
-  'const [state, setState] = useState(null);',
-  '<motion.div animate={{ y: 0 }} />',
-  'display: flex;',
-  '[].map((item) => <Card {...item} />)',
-  'useEffect(() => {}, [])',
-  'const fetchData = async () => {}',
-  'transition: all 0.3s ease-in-out;',
-  'color: var(--primary);',
-  'export default function Component() {}',
-  'background: linear-gradient(...)',
-  'if (isMobile) setMenuOpen(true);',
-  '<NextImage src="/img.png" />',
-  'onClick={() => handleClick()}',
-  '.container { max-width: 1200px; }',
-  'transform: scale(1.05);',
-  'hover:underline;',
-  '<HeroSection title="Welcome" />',
-  'map((item) => <Card {...item} />)',
-  'const router = useRouter();',
-  'justify-content: space-between;',
-  'text-shadow: 0 0 10px #f5b100;',
-  '<FramerMotion key={index} />',
-];
+const PARTICLE_COUNT = 50;
+const FADE_DURATION = 3; // секунды
 
-
-function FlyingCode({ scrollProgress }: { scrollProgress: number }) {
+function FloatingParticles() {
   const groupRef = useRef<THREE.Group>(null);
-  const { camera } = useThree();
+  const startTimeRef = useRef<number>(0);
 
-  useFrame(() => {
-    const zPos = scrollProgress * 100; // Контролируем Z-ось камерой
-    camera.position.z = zPos;
+  const particles = useMemo(() => {
+    return new Array(PARTICLE_COUNT).fill(0).map(() => ({
+      position: new THREE.Vector3(
+        THREE.MathUtils.randFloatSpread(6),
+        THREE.MathUtils.randFloatSpread(4),
+        0
+      ),
+      velocity: new THREE.Vector2(
+        THREE.MathUtils.randFloat(-0.005, 0.005),
+        THREE.MathUtils.randFloat(-0.005, 0.005)
+      ),
+      scale: THREE.MathUtils.randFloat(0.1, 0.4),
+      material: new THREE.MeshBasicMaterial({
+        color: 'rgb(0, 17, 53)',
+        transparent: true,
+        opacity: 0,
+      }),
+    }));
+  }, []);
 
-    if (groupRef.current) {
-      groupRef.current.rotation.y = scrollProgress * 2; // Можешь убрать если не нужно
-    }
+  useFrame(({ clock }) => {
+    const elapsed = clock.getElapsedTime();
+    if (startTimeRef.current === 0) startTimeRef.current = elapsed;
+    const timeSinceStart = elapsed - startTimeRef.current;
+
+    if (!groupRef.current) return;
+
+    groupRef.current.children.forEach((child, i) => {
+      const particle = particles[i];
+      const mesh = child as THREE.Mesh;
+
+      // Обновление позиции
+      particle.position.x += particle.velocity.x;
+      particle.position.y += particle.velocity.y;
+
+      // Зацикливание
+      if (particle.position.x > 4) particle.position.x = -4;
+      if (particle.position.x < -4) particle.position.x = 4;
+      if (particle.position.y > 3) particle.position.y = -3;
+      if (particle.position.y < -3) particle.position.y = 3;
+
+      // Fade-in логика
+      const targetOpacity = Math.min(0.4, timeSinceStart / FADE_DURATION * 0.4);
+      particle.material.opacity = targetOpacity;
+
+      // Применение
+      mesh.position.copy(particle.position);
+      mesh.material = particle.material;
+    });
   });
 
   return (
     <group ref={groupRef}>
-      {Array.from({ length: 50 }).map((_, i) => {
-        const line = codeLines[i % codeLines.length];
-        const x = (Math.random() - 0.5) * 20;
-        const y = (Math.random() - 0.5) * 20;
-        const z = -i * 4;
-
-        return (
-          <Text
-            key={i}
-            position={[x, y, z]}
-            fontSize={0.6}
-            color="lime"
-            font="/fonts/RobotoMono-Regular.ttf"
-          >
-            {line}
-          </Text>
-        );
-      })}
+      {particles.map((particle, i) => (
+        <mesh key={i} position={particle.position}>
+          <planeGeometry args={[particle.scale, particle.scale]} />
+          <primitive object={particle.material} attach="material" />
+        </mesh>
+      ))}
     </group>
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ThreeCodeScroll({ scrollYProgress }: { scrollYProgress: any }) {
+export default function BackgroundCanvas() {
   return (
-    <div className="fixed top-0 left-0 w-screen h-screen z-[-1]">
-      <Canvas camera={{ position: [0, 0, 0], fov: 75 }}>
-        <fog attach="fog" args={['#000000', 10, 130]} />
-        <ambientLight intensity={0.5} />
-        <FlyingCode scrollProgress={scrollYProgress.get()} />
+    <div className="fixed inset-0 -z-10">
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+        <FloatingParticles />
       </Canvas>
     </div>
   );
 }
+
+
+
+
 

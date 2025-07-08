@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { projects } from '../Projects/Projects';
 import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Projects() {
   const containerRef = useRef(null)
@@ -29,7 +31,7 @@ export default function Projects() {
       </h2>      
       
       <div className="sticky top-[10vh] md:top-[16vh] z-[-1] w-screen h-[60vh] flex items-center justify-start">
-        <motion.div style={{ x }} className="flex gap-[4vw] px-[8vw]">
+        <motion.div style={{ x }} transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }} className="flex gap-[10vw] px-[16px]">
           {projectArray.map((project, i) => (
             <div
               key={i}
@@ -41,6 +43,12 @@ export default function Projects() {
              </p>
             </div>
           ))}
+          <Link href={'/projects'} 
+            className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] rounded-xl flex items-center justify-center text-[20px] lg:text-[60px] uppercase font-[family-name:var(--font-jetBrains)]"
+          >
+            see all projects
+            <FaArrowRight />
+          </Link>
         </motion.div>
       </div>  
       

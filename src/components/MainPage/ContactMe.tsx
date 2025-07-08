@@ -8,6 +8,7 @@ export default function ContactMe() {
     <div
       className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col"
       style={{ background: '' }}
+      id="contact"
     >
       <p className="text-[16px] lg:text-[20px] opacity-80 text-center font-[family-name:var(--font-jetBrains)]">{"<Let's build something cool together />"}</p>
       <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold text-center uppercase">Contact me</h2>
