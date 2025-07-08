@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRef } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
-const projects = {
+export const projects = {
   oikia: {
     title: 'Oikia Properties',
     href: 'https://oikiaproperties.gr/en',
@@ -25,6 +25,7 @@ const projects = {
           height={600}
           className="rounded-md w-auto h-auto"
         />,
+    imgUrl: '/projects/oikia.png',
   },
   c13: {
     title: 'c13.agency',
@@ -40,6 +41,7 @@ const projects = {
           objectFit="cover"
           className="w-full h-auto absolute bottom-1/3 opacity-50"
         />,
+    imgUrl: '/projects/c13.png',
   },
   landing: {
     title: 'Proptick',
@@ -50,6 +52,7 @@ const projects = {
     img: <div className="mask-container w-full h-full ">
           <div className="circle-animation w-full h-full" />
         </div>,
+    imgUrl: '/projects/prop.png',
   },
   pinta: {
     title: 'Pinta',
@@ -57,6 +60,7 @@ const projects = {
     role: 'Frontend Dev',
     stack: ['Next.js', 'MDX', 'Tailwind'],
     img: '/projects/pinta.png',
+    imgUrl: '/projects/pintaintro.png',
   },
   blog: {
     title: 'Bleakers',
@@ -65,6 +69,7 @@ const projects = {
     role: 'Frontend Dev',
     stack: ['Next.js', 'MDX', 'Tailwind'],
     img: '/projects/bleakers.svg',
+    imgUrl: '/projects/bleakers.png',
   },
   notifix: {
     title: 'Notifix',
@@ -73,6 +78,7 @@ const projects = {
     role: 'Frontend Dev',
     stack: ['Next.js', 'MDX', 'Tailwind'],
     img: '/projects/notifix.png',
+    imgUrl: '/projects/notifixintro.png',
   },
   dashboard: {
     title: 'Opps',
@@ -81,6 +87,7 @@ const projects = {
     role: 'Frontend Dev',
     stack: ['React', 'Recharts', 'Tailwind'],
     img: '/projects/opps.svg',
+    imgUrl: '/projects/opps.png',
   },
   supertrade: {
     title: 'Supertrade',
@@ -95,6 +102,7 @@ const projects = {
           <Image src={'/projects/trade.png'} alt='trade' width={'490'} height={'241'} className='w-auto h-auto mx-auto'/>
         </div>
     </>,
+    imgUrl: '/projects/supertrade.png',
   },
 };
 

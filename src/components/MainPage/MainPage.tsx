@@ -6,7 +6,7 @@ import WhatIDo from './WhatIDo';
 export default function MainPage() {
 
   return (
-    <div className='flex flex-col items-center pb-[120px]'>
+    <div className='flex flex-col items-center pb-[120px] '>
       <Intro />
       <WhatIDo />
       <ContactMe />
