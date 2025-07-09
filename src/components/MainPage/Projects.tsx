@@ -15,13 +15,13 @@ export default function Projects() {
     offset: ['start -40%', 'end end'],
   })
 
-  const x = useTransform(scrollYProgress, [0, 1], ['100%', `-${100 * (projectArray.length - 1)}vw`])
+  const x = useTransform(scrollYProgress, [0, 1], ['20%', `-100%`])
 
-  
+  const length = projectArray.length+1
   return (
     <div
       className="backdrop-blur-[50px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col  items-center"
-      style={{ height: `calc(60vh * ${projectArray.length })` }}
+      style={{ height: `calc(60vh * ${length})` }}
       ref={containerRef}
     >
       <h2
@@ -44,7 +44,7 @@ export default function Projects() {
             </div>
           ))}
           <Link href={'/projects'} 
-            className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] rounded-xl flex items-center justify-center text-[20px] lg:text-[60px] uppercase font-[family-name:var(--font-jetBrains)]"
+            className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] rounded-xl flex items-center justify-center text-[20px] lg:text-[60px] uppercase font-[family-name:var(--font-jetBrains)] "
           >
             see all projects
             <FaArrowRight />
