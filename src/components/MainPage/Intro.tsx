@@ -21,7 +21,7 @@ export default function Intro() {
     offset: ['start start', 'end start'],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
 
