@@ -1,6 +1,7 @@
 import BackgroundCanvas from '@/ui/wrappers/ThreeCodeBackground';
 import ContactMe from './ContactMe';
 import Intro from './Intro';
+import Projects from './Projects';
 import WhatIDo from './WhatIDo';
 
 
@@ -11,9 +12,8 @@ export default function MainPage() {
       <BackgroundCanvas />
       <Intro />
       <WhatIDo />
+      <Projects />
       <ContactMe />
-
-      About Me && Tech Stack &&CV / Experience
     </div>
   );
 }

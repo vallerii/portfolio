@@ -12,7 +12,7 @@ export default function Projects() {
   const projectArray=Object.values(projects)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start -40%', 'end end'],
+    offset: ['start -35%', 'end end'],
   })
 
   const x = useTransform(scrollYProgress, [0, 1], ['20%', `-100%`])
@@ -20,7 +20,7 @@ export default function Projects() {
   const length = projectArray.length+1
   return (
     <div
-      className="backdrop-blur-[50px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col  items-center"
+      className="backdrop-blur-[0px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col  items-center"
       style={{ height: `calc(60vh * ${length})` }}
       ref={containerRef}
     >
@@ -28,7 +28,18 @@ export default function Projects() {
         className="text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase"
       >
         My projects
-      </h2>      
+      </h2> 
+      <motion.div
+          className="absolute top-[100px] left-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-3xl pointer-events-none z-0"
+          initial={{ scale: 0.8, opacity: 0.2 }}
+          animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.2, 0.4, 0.2] }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+     
       
       <div className="sticky top-[10vh] md:top-[16vh] z-[-1] w-screen h-[60vh] flex items-center justify-start">
         <motion.div style={{ x }} transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }} className="flex gap-[10vw] px-[16px]">

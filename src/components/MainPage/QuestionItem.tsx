@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { FaArrowDown } from "react-icons/fa";
-
 
 type QuestionItem = {
   item: {
@@ -16,16 +14,18 @@ const QuestionItem: React.FC<QuestionItem> = ({ item }) => {
 
   return (
     <div
-      className="flex cursor-pointer py-[12px] items-center justify-baseline border-b border-[#747474]"
+      className="flex cursor-pointer py-[12px] items-center justify-baseline border-b border-[#747474] gap-2 hover:scale-105 transition-all duration-300"
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="flex flex-col justify-center w-full">
         <div className=" flex text-[16px] lg:text-[20px] font-[500] uppercase">
-          <div className="min-w-auto w-max">
-           • <span>&nbsp; </span>
+          <div
+            className={`transition-transform duration-300 ${isOpen ? "rotate-90" : "rotate-0"}`}
+          >
+            {">"}
           </div>
           
-          <p >  {item.question}</p>
+          <p ><span> &nbsp;</span>  {item.question}</p>
 
         </div>
         <div
@@ -34,11 +34,7 @@ const QuestionItem: React.FC<QuestionItem> = ({ item }) => {
         />
          
       </div>
-      <div
-        className={`transition-transform duration-300 ${isOpen ? "rotate-90" : "rotate-0"}`}
-      >
-        <FaArrowDown width={20} height={20} />
-      </div>
+      
     </div>
   );
 };

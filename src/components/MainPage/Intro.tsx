@@ -1,10 +1,9 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import Projects from './Projects';
-import { FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
 
 const letters = 'Petropavlovska_Valeriia'.split('');
 
@@ -92,8 +91,7 @@ export default function Intro() {
           </motion.div>
         )}
       </motion.div>
-      
-      <Projects />
+      <div className='h-[100vh]'/>
     </section>
   );
 }
