@@ -1,22 +1,21 @@
+import { Project } from "@/components/Projects/AllProjectsPage";
 import Image from "next/image";
 
-export default function ProjectSmallCard({ title, stack, img }: {
-  title: string;
-  stack: string[];
-  img: string;
-}) {
+export default function ProjectSmallCard({ title, stack, imgSmall }: Project) {
   return (
     <div className="space-y-3 h-full flex flex-col">
-      <div className="relative w-full h-full rounded-lg overflow-hidden">
-        <Image
-          src={img}
-          alt={title}
-          width={800}
-          height={600}
-          objectFit="cover"
-          className="rounded-md w-full h-full"
-        />
-      </div>
+      {imgSmall && (
+        <div className="relative w-full h-full rounded-lg overflow-hidden">
+          <Image
+            src={imgSmall}
+            alt={title}
+            width={800}
+            height={600}
+            objectFit="cover"
+            className="rounded-md w-full h-full"
+          />
+        </div>
+      )}
       <div className="font-bold text-lg">{title}</div>      
       <div className="flex flex-wrap gap-1 text-xs text-white mt-auto">
         {stack.map((tech: string, index: number) => (

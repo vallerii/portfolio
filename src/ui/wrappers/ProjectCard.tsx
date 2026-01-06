@@ -1,14 +1,10 @@
-import { JSX } from "react";
+import { Project } from "@/components/Projects/AllProjectsPage";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
-export default function ProjectCard({ title, description, role, stack, img }: {
-  title: string;
-  description: string;
-  role: string;
-  stack: string[];
-  img: JSX.Element;
-}) {
+export default function ProjectCard({ slug, title, description, role, stack, imgBlock }: Project) {
   return (
-    <div className="space-y-3 h-full flex flex-col relative">
+    <Link href={`/projects/${slug}`} className={cn("cursor-pointer space-y-3 h-full w-full flex flex-col relative")}>
       <div className="font-bold text-lg">{title}</div>
       <div className="text-sm text-zinc-400">{description}</div>
       <div className="text-xs text-zinc-500">Роль: {role}</div>
@@ -19,7 +15,7 @@ export default function ProjectCard({ title, description, role, stack, img }: {
           </span>
         ))}
       </div>
-      {img}
-    </div>
+      {imgBlock && imgBlock}
+    </Link>
   );
 }

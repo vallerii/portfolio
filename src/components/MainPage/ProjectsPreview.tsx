@@ -1,15 +1,15 @@
 'use client';
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { projects } from '../Projects/Projects';
+import { useMemo, useRef } from "react";
+import { projects } from '../Projects/AllProjectsPage';
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
-export default function Projects() {
+export default function ProjectsPreview() {
   const containerRef = useRef(null)
-  const projectArray=Object.values(projects)
+  const projectArray = useMemo(() => Object.values(projects), [])
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start -35%', 'end end'],
@@ -44,15 +44,15 @@ export default function Projects() {
       <div className="sticky top-[10vh] md:top-[16vh] z-[-1] w-screen h-[60vh] flex items-center justify-start">
         <motion.div style={{ x }} transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }} className="flex gap-[10vw] px-[16px]">
           {projectArray.map((project, i) => (
-            <div
+            <Link href={`/projects/${project.slug}`}
               key={i}
               className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] bg-neutral-800 rounded-xl flex items-center justify-center text-white text-2xl relative"
             >
-             <Image src={project.imgUrl} alt={project.title} width={1000} height={900} className="w-full h-full mx-auto object-fill rounded-xl" />
+             <Image src={project.imgUrl} alt={project.title} width={1000} height={900} className="w-full h-full mx-auto object-cover rounded-xl" />
              <p className="absolute bottom-[-100px] right-[-20px] text-[20px] lg:text-[60px] font-[family-name:var(--font-jetBrains)] uppercase">
               {'<'}{project.title}{'/>'}
              </p>
-            </div>
+            </Link>
           ))}
           <Link href={'/projects'} 
             className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] rounded-xl flex items-center justify-center text-[20px] lg:text-[60px] uppercase font-[family-name:var(--font-jetBrains)] "

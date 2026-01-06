@@ -1,108 +1,182 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import ProjectCard from '@/ui/wrappers/ProjectCard';
 import ProjectSmallCard from '@/ui/wrappers/ProjectSmallCard';
 import { easeOut, motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import Image from 'next/image';
-import { useRef } from "react";
-
-export const projects = {
+import { JSX, useRef } from "react";
+export type Project = {
+  title: string;
+  slug: string;
+  href?: string;
+  description: string;
+  fullDescription?: string;
+  role: string;
+  stack: string[];
+  imgBlock?: JSX.Element;
+  imgSmall?: string;
+  imgUrl: string;
+}
+export const projects: { [key: string]: Project }  = {
   oikia: {
     title: 'Oikia Properties',
+    slug: 'oikia',
     href: 'https://oikiaproperties.gr/en',
-    description: 'Сайт недвижимости в Греции и за её пределами.',
-    role: 'Главный разработчик',
+    description: 'Real estate website in Greece and beyond.',
+    role: 'Lead Developer',
     stack: ['Next.js', 'Tailwind', 'DatoCMS', 'GraphQL', 'Framer Motion', 'AMO CRM'],
-    img: <video
-          src={'/projects/oikia.mp4'}
-          autoPlay
-          loop
-          muted
-          poster={'/projects/oikia.png'}
-          width={800}
-          height={600}
-          className="rounded-md w-auto h-auto"
-        />,
+    imgBlock: (
+      <video
+        src="/projects/oikia.mp4"
+        autoPlay
+        loop
+        muted
+        poster="/projects/oikia.png"
+        width={800}
+        height={600}
+        className="rounded-md w-auto h-auto"
+      />
+    ),
     imgUrl: '/projects/oikia.png',
   },
+
+  blackbookbykristina: {
+    title: 'Blackbook by Kristina',
+    slug: 'blackbookbykristina',
+    href: 'https://blackbookbykristina.com/',
+    description: 'Luxury travel & lifestyle concierge service.',
+    role: 'Lead Developer',
+    stack: ['Next.js', 'Tailwind', 'GraphQL', 'Framer Motion'],
+    imgUrl: '/projects/blackbookbykristina.png',
+  },
+
   c13: {
     title: 'c13.agency',
+    slug: 'c13',
     href: 'https://c13.agency/',
-    description: 'Создание библиотеки UI-компонентов.',
-    role: 'Frontend Dev',
-    stack: ['GSAP', 'React', 'Tailwind'],
-    img: <Image
-          src={'/projects/c13.svg'}
-          alt={'oikia'}
-          width={800}
-          height={600}
-          objectFit="cover"
-          className="w-full h-auto absolute bottom-1/3 opacity-50"
-        />,
+    description: 'A website combining strong visual identity with technical excellence.',
+    role: 'Frontend Developer',
+    stack: ['GSAP', 'React', 'Next.js'],
+    imgBlock: (
+      <Image
+        src="/projects/c13.svg"
+        alt="c13 agency"
+        width={800}
+        height={600}
+        objectFit="cover"
+        className="w-full h-auto absolute bottom-0 opacity-10"
+      />
+    ),
     imgUrl: '/projects/c13.png',
   },
-  landing: {
+
+  proptick: {
     title: 'Proptick',
+    slug: 'proptick',
     href: 'https://prop-tick.com',
-    description: 'Современный лендинг с адаптацией под все экраны.',
+    description: 'Modern landing page fully responsive across all devices.',
     role: 'UI Developer',
     stack: ['HTML', 'CSS', 'GSAP'],
-    img: <div className="mask-container w-full h-full ">
-          <div className="circle-animation w-full h-full" />
-        </div>,
+    imgBlock: (
+      <div className="mask-container w-full h-full">
+        <div className="circle-animation w-full h-full" />
+      </div>
+    ),
     imgUrl: '/projects/prop.png',
   },
+
+  mysiteboost: {
+    title: 'MySiteBoost',
+    slug: 'mysiteboost',
+    description: 'Markdown-based blog with dark mode and tags.',
+    role: 'Frontend Developer',
+    stack: [
+      'HTML',
+      'Next.js',
+      'Chakra UI',
+      'Firebase (Firestore)',
+      'Telegraf integration',
+    ],
+    imgSmall: '/projects/mysiteboost.svg',
+    imgUrl: '/projects/mysiteboost.png',
+  },
+
   pinta: {
     title: 'Pinta',
-    description: 'Markdown-блог с темной темой и тэгами.',
-    role: 'Frontend Dev',
+    slug: 'pinta',
+    description: 'Markdown blog with dark theme and tag system.',
+    role: 'Frontend Developer',
     stack: ['Next.js', 'MDX', 'Tailwind'],
-    img: '/projects/pinta.png',
+    imgSmall: '/projects/pinta.png',
     imgUrl: '/projects/pintaintro.png',
   },
-  blog: {
+
+  bleakers: {
     title: 'Bleakers',
+    slug: 'bleakers',
     href: 'https://bleakers.co/',
-    description: 'Markdown-блог с темной темой и тэгами.',
-    role: 'Frontend Dev',
+    description: 'Content-focused blog built with MDX and dark theme.',
+    role: 'Frontend Developer',
     stack: ['Next.js', 'MDX', 'Tailwind'],
-    img: '/projects/bleakers.svg',
+    imgSmall: '/projects/bleakers.svg',
     imgUrl: '/projects/bleakers.png',
   },
+
   notifix: {
     title: 'Notifix',
+    slug: 'notifix',
     href: '',
-    description: 'Markdown-блог с темной темой и тэгами.',
-    role: 'Frontend Dev',
+    description: 'Minimalist markdown blog with tag support.',
+    role: 'Frontend Developer',
     stack: ['Next.js', 'MDX', 'Tailwind'],
-    img: '/projects/notifix.png',
+    imgSmall: '/projects/notifix.png',
     imgUrl: '/projects/notifixintro.png',
   },
-  dashboard: {
+
+  opps: {
     title: 'Opps',
+    slug: 'opps',
     href: 'https://app.opps.ai',
-    description: 'UI для сложных графиков и метрик.',
-    role: 'Frontend Dev',
+    description: 'Dashboard UI for complex charts and performance metrics.',
+    role: 'Frontend Developer',
     stack: ['React', 'Recharts', 'Tailwind'],
-    img: '/projects/opps.svg',
+    imgSmall: '/projects/opps.svg',
     imgUrl: '/projects/opps.png',
   },
+
   supertrade: {
     title: 'Supertrade',
-    description: 'Платформа для трейдинга с лендингом и рассылкой.',
-    role: 'Main Dev',
-    stack: ['Next.js', 'SendPulse', 'CSS Animation'],
-    img: <>
-        <div className='custom-pulse' >
-          <Image src={'/projects/super.png'} alt='super' width={'490'} height={'241'}  className='w-auto h-auto mx-auto'/>
+    slug: 'supertrade',
+    description: 'Trading platform with landing page and email campaigns.',
+    role: 'Main Developer',
+    stack: ['Next.js', 'SendPulse', 'CSS Animations'],
+    imgBlock: (
+      <>
+        <div className="custom-pulse">
+          <Image
+            src="/projects/super.png"
+            alt="supertrade"
+            width={490}
+            height={241}
+            className="w-auto h-auto mx-auto"
+          />
         </div>
-        <div className='custom-pulse'>
-          <Image src={'/projects/trade.png'} alt='trade' width={'490'} height={'241'} className='w-auto h-auto mx-auto'/>
+        <div className="custom-pulse">
+          <Image
+            src="/projects/trade.png"
+            alt="supertrade platform"
+            width={490}
+            height={241}
+            className="w-auto h-auto mx-auto"
+          />
         </div>
-    </>,
+      </>
+    ),
     imgUrl: '/projects/supertrade.png',
   },
 };
+
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -117,7 +191,7 @@ const itemVariants: Variants = {
   }),
 };
 
-export default function Projects() {
+export default function AllProjectsPage() {
   // Реф для всей сетки
   const containerRef = useRef(null);
   // Проверяем, в видимости ли контейнер (появился в середине экрана)
@@ -135,13 +209,13 @@ export default function Projects() {
       style={{ background: '' }}
       ref={containerRef}
     >
-      <motion.h2
+      <motion.h1
         ref={h2Ref}
         style={{ opacity }}
         className="mb-[40px] text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
       >
         My projects
-      </motion.h2>      
+      </motion.h1>      
       <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto mt-[120px]">
         {/* Ряд 1 */}
         <motion.div
@@ -171,7 +245,7 @@ export default function Projects() {
             animate={isInView ? "visible" : "hidden"}
             className="bg-[#182C40] rounded-xl p-4"
           >
-            <ProjectCard {...projects.c13} />
+           <ProjectSmallCard {...projects.mysiteboost} />
           </motion.div>
         </div>
 
@@ -182,7 +256,7 @@ export default function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="col-span-7 md:col-span-5 lg:col-span-2 lg:row-start-1 bg-[#001f41] rounded-xl p-4"
         >
-          <ProjectCard {...projects.landing} />
+          <ProjectCard {...projects.proptick} />
         </motion.div>
 
         {/* Ряд 2 */}
@@ -191,9 +265,10 @@ export default function Projects() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="col-span-7 md:col-span-4 lg:col-span-4 lg:row-start-2 flex gap-[8px] items-center justify-center font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] uppercase p-4"
+          className={cn("relative col-span-7 md:col-span-4 lg:col-span-4 lg:row-start-2 bg-[#262D3C] p-4 rounded-xl") }
         >
-        
+          <Image src="/projects/blackbookbykristina.png" alt="blackbookbykristina" fill className='absolute w-full h-full object-cover brightness-50 rounded-xl' />
+          <ProjectCard {...projects.blackbookbykristina} />
         </motion.div>
 
         <motion.div
@@ -225,7 +300,7 @@ export default function Projects() {
             animate={isInView ? "visible" : "hidden"}
             className="bg-[#182C40] rounded-xl p-4"
           >
-            <ProjectSmallCard {...projects.blog} />
+            <ProjectSmallCard {...projects.bleakers} />
           </motion.div>
           <motion.div
             custom={8}
@@ -234,7 +309,7 @@ export default function Projects() {
             animate={isInView ? "visible" : "hidden"}
             className="bg-[#262D3C] rounded-xl p-4"
           >
-            <ProjectSmallCard {...projects.dashboard} />
+            <ProjectSmallCard {...projects.opps} />
           </motion.div>
           <motion.div
             custom={9}
