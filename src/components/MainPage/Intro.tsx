@@ -91,7 +91,8 @@ export default function Intro() {
           </motion.div>
         )}
       </motion.div>
-      <div className='h-[100vh]'/>
+      <div className='h-[90vh]'/>
+      
     </section>
   );
 }

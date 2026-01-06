@@ -125,24 +125,24 @@ export default function Projects() {
   const h2Ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: h2Ref,
-    offset: ['start 60%', 'end start'],
+    offset: ['start 10%', 'end start'],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   return (
     <div
-      className="backdrop-blur-[50px] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col justify-center items-center"
+      className="text-white px-[16px]  z-[4] relative flex flex-col justify-center items-center"
       style={{ background: '' }}
       ref={containerRef}
     >
       <motion.h2
         ref={h2Ref}
         style={{ opacity }}
-        className="text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
+        className="mb-[40px] text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
       >
         My projects
       </motion.h2>      
-      <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto mt-[40px]">
+      <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto mt-[120px]">
         {/* Ряд 1 */}
         <motion.div
           custom={0}
