@@ -48,6 +48,7 @@ export default function ProjectPage() {
             
           <Image src={project.imgUrl} alt={project.title} width={1232} height={900} className="w-full h-full mx-auto object-cover rounded-xl" />
         </div>
+        
         {project?.structure && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.structure}}/>}
 
         {project.videoUrl && (

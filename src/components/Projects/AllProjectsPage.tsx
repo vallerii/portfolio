@@ -164,11 +164,112 @@ export const projects: { [key: string]: Project }  = {
     role: 'UI Developer',
     stack: ['HTML', 'CSS', 'GSAP'],
     imgBlock: (
-      <div className="mask-container w-full h-full">
+      <div className="mask-container w-full h-full z-[-1] ">
         <div className="circle-animation w-full h-full" />
       </div>
     ),
     imgUrl: '/projects/prop.png',
+    videoUrl: '/projects/proptick.mp4',
+    overview: `
+      <section id="project-overview">
+        <h2>Project Overview</h2>
+        <p>
+          <strong>Prop-Tick</strong> is a real estate SaaS platform designed for
+          property management, offer handling, and agent–client collaboration.
+          The platform provides tools for property listings, advanced search,
+          and transaction tracking to streamline real estate operations.
+        </p>
+        <p>
+          The English version (<code>/en/</code>) targets international users with
+          multilingual support, focusing on transparent offer comparison,
+          seller preferences, and dedicated client portals for seamless
+          communication between agents, buyers, and sellers.
+        </p>
+        <p>
+          The product is positioned as a professional tool for real estate agents
+          and agencies to manage listings, analyze multiple offers, and facilitate
+          secure, data-driven transactions.
+        </p>
+      </section>
+    `,
+    structure: `
+      <section id="pages-structure">
+        <h2>Pages &amp; Sections</h2>
+        <ul>
+          <li>
+            <strong>Home / Landing</strong> — hero section, key value proposition,
+            platform overview, and primary call-to-actions.
+          </li>
+          <li>
+            <strong>Company</strong> — information about the company, mission,
+            vision, and background of the platform.
+          </li>
+          <li>
+            <strong>Know How</strong> — educational and explanatory content describing
+            platform logic, workflows, and best practices.
+          </li>
+          <li>
+            <strong>Pricing</strong> — subscription plans, feature comparison,
+            and billing information.
+          </li>
+          <li>
+            <strong>Affiliates Program</strong> — partner and referral program details,
+            commission structure, and onboarding information.
+          </li>
+          <li>
+            <strong>Academy</strong> — learning section with educational materials,
+            guides, and training content for users.
+          </li>
+          <li>
+            <strong>Support</strong> — help and support resources, contact options,
+            and user assistance flows.
+          </li>
+          <li>
+            <strong>Legal Pages</strong> — Refund Policy, Disclaimer, Privacy Policy,
+            and Terms &amp; Conditions.
+          </li>
+        </ul>
+        <br />
+        <p>
+          Navigation includes a top menu with structured access to all main sections
+          and a footer containing legal documentation and compliance-related links.
+        </p>
+      </section>
+    `,
+    functionality: `
+      <section id="functionality">
+        <h2>Functionality</h2>
+        <ul>
+          <li>Property search and listing management with filtering and maps</li>
+          <li>Offer management boards for comparing multiple offers in real time</li>
+          <li>Seller preference ranking and decision support tools</li>
+          <li>Dedicated client portals for buyers and sellers</li>
+          <li>Agent dashboards with analytics and performance insights</li>
+          <li>Document generation and secure data transmission</li>
+          <li>Authentication and role-based access control</li>
+          <li>Multilingual support including English (<code>/en/</code>)</li>
+          <li>Fully responsive UI for desktop and mobile usage</li>
+        </ul>
+      </section>
+    `,
+    myRole: `
+      <section id="my-role">
+        <h2>My Role</h2>
+        <p>
+          <strong>Full-cycle development.</strong>
+          I was responsible for the complete development lifecycle of the platform.
+        </p>
+        <ul>
+          <li>Planning system architecture and feature scope</li>
+          <li>Frontend and backend development</li>
+          <li>Database design and API integrations</li>
+          <li>Implementation of secure authentication and real-time features</li>
+          <li>Performance optimization for high-traffic property listings</li>
+          <li>Scalability planning for multilingual support</li>
+          <li>Testing, deployment, and ongoing maintenance</li>
+        </ul>
+      </section>
+    `
   },
 
   mysiteboost: {

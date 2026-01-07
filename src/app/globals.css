@@ -77,6 +77,9 @@ a {
     transform: translate(50%, -50%);
   }
 }
+.fullDescription {
+  z-index: 10;
+}
 
 .fullDescription h2 {
   font-size: 1.6rem;
