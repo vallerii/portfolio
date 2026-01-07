@@ -22,7 +22,7 @@ export default function ProjectPage() {
       <motion.h1
         ref={h2Ref}
         style={{ opacity }}
-        className=" text-[6vw] md:text-[8vw] leading-[1.1] font-bold mx-auto uppercase z-[-1] "
+        className=" text-[12vw] leading-[1.1] font-bold mx-auto uppercase z-[-1] "
       >
         {project.title}
       </motion.h1> 
@@ -40,13 +40,13 @@ export default function ProjectPage() {
                 </span>
               ))}
             </div>
-            {project?.overview && <div className="fullDescription text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.overview}}/>}
+            {project?.overview && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.overview}}/>}
             
           </div>
           <Image src={project.imgUrl} alt={project.title} width={1232} height={900} className="w-full h-full mx-auto object-cover rounded-xl" />
         </div>
         
-        {project?.fullDescription && <div className="fullDescription text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.fullDescription}}/>}
+        {project?.fullDescription && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.fullDescription}}/>}
       </div>
       {project.videoUrl && (
         <video

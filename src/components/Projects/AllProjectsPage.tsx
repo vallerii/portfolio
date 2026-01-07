@@ -294,7 +294,7 @@ export default function AllProjectsPage() {
       <motion.h1
         ref={h2Ref}
         style={{ opacity }}
-        className="mb-[40px] text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
+        className="mb-[40px] text-[12vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1] "
       >
         My projects
       </motion.h1>      

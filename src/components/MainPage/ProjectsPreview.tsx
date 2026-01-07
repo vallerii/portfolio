@@ -25,7 +25,7 @@ export default function ProjectsPreview() {
       ref={containerRef}
     >
       <h2
-        className="text-[12vw] md:text-[13vw] font-bold mx-auto text-center uppercase"
+        className="text-[12vw] font-bold mx-auto text-center uppercase"
       >
         My projects
       </h2> 
