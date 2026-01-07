@@ -35,14 +35,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${jetBrains.variable} ${space.variable} ${inter.variable} antialiased`}
-      >
+      > 
+        <Menu />
+        {children}
+        <Footer />
         <Script
           src="https://platform.linkedin.com/badges/js/profile.js"
           strategy="afterInteractive"
         />
-        <Menu />
-        {children}
-        <Footer />
       </body>
     </html>
   );

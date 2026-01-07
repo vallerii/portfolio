@@ -11,12 +11,14 @@ export type Project = {
   slug: string;
   href?: string;
   description: string;
+  overview?: string;
   fullDescription?: string;
   role: string;
   stack: string[];
   imgBlock?: JSX.Element;
   imgSmall?: string;
   imgUrl: string;
+  videoUrl?: string;
 }
 export const projects: { [key: string]: Project }  = {
   oikia: {
@@ -49,7 +51,87 @@ export const projects: { [key: string]: Project }  = {
     role: 'Lead Developer',
     stack: ['Next.js', 'Tailwind', 'GraphQL', 'Framer Motion'],
     imgUrl: '/projects/blackbookbykristina.png',
+    videoUrl: '/projects/blackbookbykristina.mp4',
+    overview: `
+      <section id="project-overview">
+        <p>
+          <strong>Blackbook by Kristina</strong> is a high-end personal brand and service
+          website built for a creative professional.
+          The project focuses on storytelling, lifestyle aesthetics, and strong brand
+          positioning rather than a traditional developer-style portfolio.
+        </p>
+        <br />
+        <p>
+          The primary goal of the website is to promote Kristina’s curated service
+          offering, build trust through visual narrative, and guide users toward clear
+          conversion actions.
+        </p>
+      </section>
+    `,
+    fullDescription: `
+      <section id="pages-structure">
+        <h2>Pages &amp; Sections</h2>
+        <ul>
+          <li>
+            <strong>Hero / Landing Section</strong> — introduces the brand identity,
+            core message, and value proposition through impactful visuals and minimal copy.
+          </li>
+          <li>
+            <strong>Services / Offerings</strong> — presents the core services in an
+            editorial layout, emphasizing experience, value, and personal transformation.
+          </li>
+          <li>
+            <strong>About / Biography</strong> — story-driven section that builds
+            credibility and emotional connection with the audience.
+          </li>
+          <li>
+            <strong>Lifestyle &amp; Visual Sections</strong> — image-focused blocks that
+            reinforce brand mood, aesthetics, and aspirational positioning.
+          </li>
+          <li>
+            <strong>Application Form</strong> — a dedicated form for submitting service
+            requests and structured inquiries.
+          </li>
+          <li>
+            <strong>Contact Us Section</strong> — direct communication block with a
+            contact form and clear call to action.
+          </li>
+        </ul>
+      </section>
+
+      <section id="functionality">
+        <h2>Functionality</h2>
+        <ul>
+          <li>Fully responsive layout optimized for all devices</li>
+          <li>Smooth UI animations and transitions supporting storytelling</li>
+          <li>Application submission form with client-side validation</li>
+          <li>Contact Us form with validation and Google reCAPTCHA integration</li>
+          <li>Secure and user-friendly form handling</li>
+          <li>Clear conversion flow from first impression to inquiry</li>
+          <li>Brand-focused typography, spacing, and visual hierarchy</li>
+          <li>SEO-friendly page structure for a personal brand website</li>
+        </ul>
+      </section>
+
+      <section id="my-role">
+        <h2>My Role</h2>
+        <p>
+          <strong>End-to-end frontend development.</strong>
+          I was responsible for the full implementation of the project, including:
+        </p>
+        <ul>
+          <li>Defining page structure and layout logic</li>
+          <li>Implementing responsive UI and animations</li>
+          <li>Developing and validating application and contact forms</li>
+          <li>Integrating Google reCAPTCHA for spam protection</li>
+          <li>Ensuring accessibility, usability, and smooth user experience</li>
+          <li>Final frontend polishing and deployment readiness</li>
+        </ul>
+      </section>
+
+    `
   },
+  
 
   c13: {
     title: 'c13.agency',
@@ -89,14 +171,14 @@ export const projects: { [key: string]: Project }  = {
   mysiteboost: {
     title: 'MySiteBoost',
     slug: 'mysiteboost',
-    description: 'Markdown-based blog with dark mode and tags.',
+    description: 'Real-time website monitoring and performance tracking platform.',
     role: 'Frontend Developer',
     stack: [
-      'HTML',
       'Next.js',
+      'Firebase',
+      'Redux',
+      'REST API',
       'Chakra UI',
-      'Firebase (Firestore)',
-      'Telegraf integration',
     ],
     imgSmall: '/projects/mysiteboost.svg',
     imgUrl: '/projects/mysiteboost.png',
@@ -138,7 +220,7 @@ export const projects: { [key: string]: Project }  = {
     title: 'Opps',
     slug: 'opps',
     href: 'https://app.opps.ai',
-    description: 'Dashboard UI for complex charts and performance metrics.',
+    description: 'Data search and analytics platform for marketing and business development.',
     role: 'Frontend Developer',
     stack: ['React', 'Recharts', 'Tailwind'],
     imgSmall: '/projects/opps.svg',
@@ -148,7 +230,7 @@ export const projects: { [key: string]: Project }  = {
   supertrade: {
     title: 'Supertrade',
     slug: 'supertrade',
-    description: 'Trading platform with landing page and email campaigns.',
+    description: 'Landing page for a financial platform with multilingual support, animations, and CMS integration.',
     role: 'Main Developer',
     stack: ['Next.js', 'SendPulse', 'CSS Animations'],
     imgBlock: (

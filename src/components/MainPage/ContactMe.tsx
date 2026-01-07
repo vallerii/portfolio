@@ -6,7 +6,7 @@ export default function ContactMe() {
 
   return (
     <div
-      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col"
+      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col mt-[-40vh]"
       style={{ background: '' }}
       id="contact"
     >

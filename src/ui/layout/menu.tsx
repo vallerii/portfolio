@@ -36,7 +36,7 @@ export default function Menu() {
   }, [open]);
 
   return (
-    <header className="px-[16px] py-[20px] w-full z-[50] flex justify-end items-start sticky top-0 relative">
+    <header className="px-[16px] py-[20px]  z-[50] flex justify-end items-start sticky top-0 relative">
       {/* Burger */}
       <button
         ref={burgerRef}
@@ -59,18 +59,20 @@ export default function Menu() {
           }`}
         />
       </button>
-
+      
       {/* Menu */}
       <nav
         ref={menuRef}
         className={`
-          absolute top-0 right-0 h-screen min-w-[300px] w-[40vw]
+          fixed top-0 right-0 h-screen min-w-[300px] w-[40vw]
           font-[family-name:var(--font-jetBrains)]
-          text-[28px]
+          text-[20px]
+          md:text-[24px]
+          lg:text-[28px]
           flex flex-col gap-[24px]
           px-[32px] py-[80px]
           backdrop-blur-lg
-          brightness-90
+          bg-[linear-gradient(135deg,rgb(10,31,148,0.7)_0%,rgb(0,17,53,0.7)_100%)]
           transform
           transition-transform transition-opacity
           duration-500 ease-out

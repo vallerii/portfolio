@@ -46,7 +46,7 @@ export default function Intro() {
         className="sticky top-0 h-screen pt-[30vh] flex flex-col items-start px-[16px] py-[20px] max-w-[1232px] mx-auto gap-[30px] lg:gap-[60px]"
       >
        
-        <h1 className="font-[family-name:var(--font-jetBrains)] font-bold text-[30px] lg:text-[60px] flex items-center flex-wrap uppercase">
+        <h1 className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(20px,5vw,60px)] flex items-center flex-wrap uppercase">
           {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>&lt;</motion.span>}
 
           {showName &&

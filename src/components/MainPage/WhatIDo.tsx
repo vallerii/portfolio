@@ -39,7 +39,7 @@ export default function WhatIDo() {
   ]
   return (
     <div
-      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col lg:flex-row-reverse items-center lg:items-start justify-between gap-[40px]"
+      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col lg:flex-row-reverse items-center lg:items-start justify-between gap-[40px] mt-[-40vh]"
       style={{ background: '', zIndex: 44 }}
     >
       <div className="flex flex-col gap-[12px] w-full max-w-[400px] ">
@@ -47,7 +47,7 @@ export default function WhatIDo() {
         <p className="text-[16px] lg:text-[24px] opacity-80 max-w-[330px]">
           I build interfaces that look good and work even better.
         </p>
-        <div className='my-[600px] display-none lg:block'>
+        <div className='lg:my-[600px] display-none lg:block'>
           <TechSkills />
         </div>
               
