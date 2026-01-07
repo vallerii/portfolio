@@ -41,6 +41,7 @@ export default function WhatIDo() {
     <div
       className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col lg:flex-row-reverse items-center lg:items-start justify-between gap-[40px] mt-[-40vh]"
       style={{ background: '', zIndex: 44 }}
+      id='skills'
     >
       <div className="flex flex-col gap-[12px] w-full max-w-[400px] ">
         <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold uppercase max-w-[330px]">What I do?</h2>

@@ -14,8 +14,10 @@ body {
 a:hover {
   color: #34c7f8;
   opacity: 1;
-  width: fit-content !important;
   transition: all 0.3s ease-in-out;
+}
+a {
+  width: fit-content ;
 }
 
 .sunnyShadow:hover {
@@ -78,7 +80,6 @@ a:hover {
 
 .fullDescription h2 {
   font-size: 1.6rem;
-  margin-top: 2rem;
   margin-bottom: 1rem;
   color: #34c7f8;
   text-transform: uppercase;

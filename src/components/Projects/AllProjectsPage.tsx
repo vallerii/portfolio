@@ -12,7 +12,9 @@ export type Project = {
   href?: string;
   description: string;
   overview?: string;
-  fullDescription?: string;
+  functionality?: string;
+  structure?: string;
+  myRole?: string;
   role: string;
   stack: string[];
   imgBlock?: JSX.Element;
@@ -49,7 +51,7 @@ export const projects: { [key: string]: Project }  = {
     href: 'https://blackbookbykristina.com/',
     description: 'Luxury travel & lifestyle concierge service.',
     role: 'Lead Developer',
-    stack: ['Next.js', 'Tailwind', 'GraphQL', 'Framer Motion'],
+    stack: ['Next.js', 'Tailwind', 'GraphQL', 'Framer Motion', 'Google reCAPTCHA', 'REST Api',],
     imgUrl: '/projects/blackbookbykristina.png',
     videoUrl: '/projects/blackbookbykristina.mp4',
     overview: `
@@ -68,20 +70,52 @@ export const projects: { [key: string]: Project }  = {
         </p>
       </section>
     `,
-    fullDescription: `
+    functionality: `
+      <section id="functionality">
+        <h2>Functionality</h2>
+        <ul>
+          <li>Fully responsive layout optimized for all devices</li>
+          <li>Smooth UI animations and transitions supporting storytelling</li>
+          <li>Application submission form with client-side validation</li>
+          <li>Contact Us form with validation and Google reCAPTCHA integration</li>
+          <li>Secure and user-friendly form handling</li>
+          <li>Clear conversion flow from first impression to inquiry</li>
+          <li>Brand-focused typography, spacing, and visual hierarchy</li>
+          <li>SEO-friendly page structure for a personal brand website</li>
+        </ul>
+      </section>
+    `,
+    myRole: `
+      <section id="my-role">
+        <h2>My Role</h2>
+        <p>
+          <strong>End-to-end frontend development.</strong>
+          I was responsible for the full implementation of the project, including:
+        </p>
+        <ul>
+          <li>Defining page structure and layout logic</li>
+          <li>Implementing responsive UI and animations</li>
+          <li>Developing and validating application and contact forms</li>
+          <li>Integrating Google reCAPTCHA for spam protection</li>
+          <li>Ensuring accessibility, usability, and smooth user experience</li>
+          <li>Final frontend polishing and deployment readiness</li>
+        </ul>
+      </section>
+    `,
+    structure: `
       <section id="pages-structure">
-        <h2>Pages &amp; Sections</h2>
+        <h2 class="text-center">Pages &amp; Sections</h2>
         <ul>
           <li>
-            <strong>Hero / Landing Section</strong> — introduces the brand identity,
+            <strong>Hero Section</strong> — introduces the brand identity,
             core message, and value proposition through impactful visuals and minimal copy.
           </li>
           <li>
-            <strong>Services / Offerings</strong> — presents the core services in an
+            <strong>Services </strong> — presents the core services in an
             editorial layout, emphasizing experience, value, and personal transformation.
           </li>
           <li>
-            <strong>About / Biography</strong> — story-driven section that builds
+            <strong>About Page</strong> — story-driven section that builds
             credibility and emotional connection with the audience.
           </li>
           <li>
@@ -98,37 +132,6 @@ export const projects: { [key: string]: Project }  = {
           </li>
         </ul>
       </section>
-
-      <section id="functionality">
-        <h2>Functionality</h2>
-        <ul>
-          <li>Fully responsive layout optimized for all devices</li>
-          <li>Smooth UI animations and transitions supporting storytelling</li>
-          <li>Application submission form with client-side validation</li>
-          <li>Contact Us form with validation and Google reCAPTCHA integration</li>
-          <li>Secure and user-friendly form handling</li>
-          <li>Clear conversion flow from first impression to inquiry</li>
-          <li>Brand-focused typography, spacing, and visual hierarchy</li>
-          <li>SEO-friendly page structure for a personal brand website</li>
-        </ul>
-      </section>
-
-      <section id="my-role">
-        <h2>My Role</h2>
-        <p>
-          <strong>End-to-end frontend development.</strong>
-          I was responsible for the full implementation of the project, including:
-        </p>
-        <ul>
-          <li>Defining page structure and layout logic</li>
-          <li>Implementing responsive UI and animations</li>
-          <li>Developing and validating application and contact forms</li>
-          <li>Integrating Google reCAPTCHA for spam protection</li>
-          <li>Ensuring accessibility, usability, and smooth user experience</li>
-          <li>Final frontend polishing and deployment readiness</li>
-        </ul>
-      </section>
-
     `
   },
   
