@@ -2,14 +2,14 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMemo, useRef } from "react";
-import { projects } from '../Projects/AllProjectsPage';
+import { projects } from '@/ui/data/projects';
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
 export default function ProjectsPreview() {
   const containerRef = useRef(null)
-  const projectArray = useMemo(() => Object.values(projects), [])
+  const projectArray = useMemo(() => Object.values(projects)?.slice(0, 5), [])
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start -15%', 'end end'],

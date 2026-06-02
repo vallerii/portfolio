@@ -4,6 +4,7 @@ import { projects } from './AllProjectsPage';
 import { useRef } from 'react';
 import {motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export default function ProjectPage() {
@@ -35,7 +36,21 @@ export default function ProjectPage() {
         ref={h2Ref}
         style={{ opacity }}
         className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(20px,5vw,60px)] flex items-center flex-wrap uppercase mt-[40px] mb-[120px]">
-          {"<"}{project.title} {"/>"}
+          {"<"}{project.title} {"/>"} 
+          {project.isMyProject && project.href && <span className="text-sm text-[#FFF] ml-2">
+            <Link href={project.href} target="_blank" rel="noopener noreferrer" className="text-[white]">
+              <svg
+                fill="currentColor"
+                width="60"
+                height="60"
+                viewBox="0 0 64 64"
+                className="text-white hover:text-blue-500 transition-colors"
+              >
+                <path d="M36.026,20.058l-21.092,0c-1.65,0 -2.989,1.339 -2.989,2.989l0,25.964c0,1.65 1.339,2.989 2.989,2.989l26.024,0c1.65,0 2.989,-1.339 2.989,-2.989l0,-20.953l3.999,0l0,21.948c0,3.308 -2.686,5.994 -5.995,5.995l-28.01,0c-3.309,0 -5.995,-2.687 -5.995,-5.995l0,-27.954c0,-3.309 2.686,-5.995 5.995,-5.995l22.085,0l0,4.001Z"/>
+                <path d="M55.925,25.32l-4.005,0l0,-10.481l-27.894,27.893l-2.832,-2.832l27.895,-27.895l-10.484,0l0,-4.005l17.318,0l0.002,0.001l0,17.319Z"/>
+              </svg>            </Link>
+            </span>
+          }
       </motion.h1>
 
       <div className='flex flex-col gap-[20px] md:gap-[40px] lg:gap-[80px] max-w-[1232px] mx-auto relative '>
@@ -71,6 +86,20 @@ export default function ProjectPage() {
                 {tech}
               </div>
             ))}
+            {project.isMyProject && project.href && <span className="text-sm text-[#FFF] ml-2">
+            <Link href={project.href} target="_blank" rel="noopener noreferrer" className="text-[white]">
+              <svg
+                fill="currentColor"
+                width="30"
+                height="30"
+                viewBox="0 0 64 64"
+                className="text-white hover:text-blue-500 transition-colors"
+              >
+                <path d="M36.026,20.058l-21.092,0c-1.65,0 -2.989,1.339 -2.989,2.989l0,25.964c0,1.65 1.339,2.989 2.989,2.989l26.024,0c1.65,0 2.989,-1.339 2.989,-2.989l0,-20.953l3.999,0l0,21.948c0,3.308 -2.686,5.994 -5.995,5.995l-28.01,0c-3.309,0 -5.995,-2.687 -5.995,-5.995l0,-27.954c0,-3.309 2.686,-5.995 5.995,-5.995l22.085,0l0,4.001Z"/>
+                <path d="M55.925,25.32l-4.005,0l0,-10.481l-27.894,27.893l-2.832,-2.832l27.895,-27.895l-10.484,0l0,-4.005l17.318,0l0.002,0.001l0,17.319Z"/>
+              </svg>            </Link>
+            </span>
+          }
           </div>
           {project?.functionality && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.functionality}}/>}
             
