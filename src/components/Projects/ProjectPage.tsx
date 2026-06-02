@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from 'next/navigation';
-import { projects } from './AllProjectsPage';
+import { projects } from '@/ui/data/projects';
 import { useRef } from 'react';
 import {motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
