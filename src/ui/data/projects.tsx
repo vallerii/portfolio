@@ -12,7 +12,7 @@ export type Project = {
   myRole?: string;
   role: string;
   stack: string[];
-  imgBlock?: JSX.Element;
+  imgBlock?: JSX.Element; // Optional custom image block for projects with unique visual requirements
   imgSmall?: string;
   imgUrl: string;
   videoUrl?: string;
@@ -287,7 +287,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'UI Developer',
     stack: ['HTML', 'CSS', 'GSAP'],
     imgBlock: (
-      <div className="mask-container w-full h-full z-[-1] ">
+      <div className="mask-container w-full h-full z-[1] ">
         <div className="circle-animation w-full h-full" />
       </div>
     ),
@@ -914,6 +914,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Redux', 'HTML', 'CSS', 'OpenAI API', 'VistaCreate'],
     imgUrl: '/projects/adsee.png',
+    imgSmall: '/projects/adsee-logo.png',
     overview: `
       <section id="project-overview">
         <p>
@@ -984,6 +985,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'REST API'],
     imgUrl: '/projects/addup.png',
+    videoUrl: '/projects/addup.mp4',
     overview: `
       <section id="project-overview">
         <p>
@@ -1041,6 +1043,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'REST API'],
     imgUrl: '/projects/shop2mob.png',
+    imgSmall: '/projects/shop2mob-logo.svg',
     overview: `
       <section id="project-overview">
         <p>
@@ -1104,6 +1107,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'HTML', 'CSS', 'D3.js'],
     imgUrl: '/projects/derma.png',
+    imgSmall: '/projects/derma-logo.png',
     overview: `
       <section id="project-overview">
         <p>
@@ -1173,6 +1177,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Lead Developer',
     stack: ['Next.js', 'Strapi', 'Tailwind', 'REST API'],
     imgUrl: '/projects/feecutex.png',
+    imgSmall: '/projects/feecutex-logo.png',
     overview: `
       <section id="project-overview">
         <p>
@@ -1239,6 +1244,19 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'Framer Motion'],
     imgUrl: '/projects/flare.png',
+    imgBlock: (
+      <video
+        src="/projects/flare.mp4"
+        autoPlay
+        loop
+        muted
+        poster="/projects/flare.png"
+        width={800}
+        height={600}
+        className="rounded-md w-auto h-auto"
+      />
+    ),
+    videoUrl: '/projects/flare.mp4',
     overview: `
       <section id="project-overview">
         <p>
@@ -1296,6 +1314,18 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'REST API'],
     imgUrl: '/projects/slava.png',
+    imgBlock: (
+      <video
+        src="/projects/slava.mp4"
+        autoPlay
+        loop
+        muted
+        poster="/projects/slava.png"
+        width={800}
+        height={600}
+        className="rounded-md w-auto h-auto"
+      />
+    ),
     overview: `
       <section id="project-overview">
         <p>
@@ -1352,6 +1382,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'Framer Motion'],
     imgUrl: '/projects/iqpoint.png',
+    videoUrl: '/projects/iqpoint.mp4',
     overview: `
       <section id="project-overview">
         <p>
@@ -1409,6 +1440,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'Framer Motion', 'REST API'],
     imgUrl: '/projects/iqresidence.png',
+    imgSmall: '/projects/iqresidence-logo.png',
     overview: `
       <section id="project-overview">
         <p>
@@ -1469,6 +1501,7 @@ export const projects: { [key: string]: Project }  = {
     role: 'Frontend Developer',
     stack: ['Next.js', 'Tailwind', 'Framer Motion'],
     imgUrl: '/projects/pershiledy.png',
+    imgSmall: '/projects/pershiledy-logo.png',
     overview: `
       <section id="project-overview">
         <p>

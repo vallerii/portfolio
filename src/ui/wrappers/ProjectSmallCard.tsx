@@ -1,4 +1,4 @@
-import { Project } from "@/components/Projects/AllProjectsPage";
+import { Project } from "@/ui/data/projects";
 import Image from "next/image";
 
 export default function ProjectSmallCard({ title, stack, imgSmall }: Project) {
@@ -12,7 +12,7 @@ export default function ProjectSmallCard({ title, stack, imgSmall }: Project) {
             width={800}
             height={600}
             objectFit="cover"
-            className="rounded-md w-full h-full"
+            className="rounded-md w-full h-full max-w-[130px] max-h-[170px] mx-auto object-contain"
           />
         </div>
       )}

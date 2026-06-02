@@ -112,13 +112,13 @@ const COL: Record<number, string> = {
 // ─── Additional projects list ─────────────────────────────────────────────
 // Add new projects here. The block system will fit them in automatically.
 const remainingProjects = [
+  projects.flare,
   projects.indigo,
-  projects.adsee,
   projects.addup,
   projects.shop2mob,
   projects.derma,
   projects.feecutex,
-  projects.flare,
+  projects.adsee,
   projects.slava,
   projects.iqpoint,
   projects.iqresidence,
@@ -240,7 +240,7 @@ export default function CommercialProjects() {
                     {smalls.map((project, si) => (
                       <motion.div key={project.slug} custom={animI + si} variants={itemVariants}
                         initial="hidden" animate={isInView ? 'visible' : 'hidden'}
-                        className={cn('rounded-xl p-4', si % 2 === 0 ? 'bg-[#262D3C]' : 'bg-[#182C40]')}>
+                        className={cn('rounded-xl p-4 relative', si % 2 === 0 ? 'bg-[#262D3C]' : 'bg-[#182C40]')}>
                         <ProjectSmallCard {...project} />
                       </motion.div>
                     ))}
@@ -254,8 +254,12 @@ export default function CommercialProjects() {
                 elements.push(
                   <motion.div key={bigRight.slug} custom={animI} variants={itemVariants}
                     initial="hidden" animate={isInView ? 'visible' : 'hidden'}
-                    className="col-span-7 lg:col-span-3 lg:row-span-2 rounded-xl p-4"
+                    className="col-span-7 lg:col-span-3 lg:row-span-2 rounded-xl p-4 relative"
                     style={{ backgroundColor: getBg(animI) }}>
+                    {bigRight?.imgUrl && !bigRight?.imgBlock && !bigRight?.imgSmall && (
+                      <Image src={bigRight.imgUrl} alt={bigRight.title} fill
+                        className="absolute z-[1] w-full h-full object-cover brightness-70 rounded-xl" />
+                    )}
                     <ProjectCard {...bigRight} />
                   </motion.div>
                 );
@@ -281,8 +285,12 @@ export default function CommercialProjects() {
               elements.push(
                 <motion.div key={project.slug} custom={animI} variants={itemVariants}
                   initial="hidden" animate={isInView ? 'visible' : 'hidden'}
-                  className={cn('rounded-xl p-4', colClass, rowSpanClass)}
+                  className={cn('rounded-xl p-4 relative', colClass, rowSpanClass)}
                   style={{ backgroundColor: getBg(animI) }}>
+                  {project?.imgUrl && !project?.imgBlock && !project?.imgSmall && (
+                    <Image src={project.imgUrl} alt={project.title} fill
+                      className="absolute z-[1] w-full h-full object-cover brightness-70 rounded-xl" />
+                  )}
                   {cell.type === 'large'
                     ? <ProjectCard {...project} />
                     : <ProjectSmallCard {...project} />}
