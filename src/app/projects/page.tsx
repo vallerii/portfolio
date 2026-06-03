@@ -1,7 +1,7 @@
-import ProjectPage from "@/components/Projects/ProjectPage";
+import AllProjectsPage from "@/components/Projects/AllProjectsPage";
 
 export default function Projects() {
   return (
-    <ProjectPage/>
+    <AllProjectsPage/>
   );
 }

@@ -1,17 +1,23 @@
 @import "tailwindcss";
 
+/* html, body {
+  overflow-x: hidden;
+} */
+
 body {
   /* background: rgb(0, 17, 53) 061329; */
   background: linear-gradient(135deg,rgb(10, 31, 148) 0%, rgb(0, 17, 53) 60% 100%);
   color: #FFF;
   font-family: Inter, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
 a:hover {
   color: #34c7f8;
   opacity: 1;
   transition: all 0.3s ease-in-out;
+}
+a {
+  width: fit-content ;
 }
 
 .sunnyShadow:hover {
@@ -70,6 +76,39 @@ a:hover {
   100% {
     transform: translate(50%, -50%);
   }
+}
+.fullDescription {
+  z-index: 10;
+}
+
+.fullDescription h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #34c7f8;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: var(--font-jetBrains) ;
+}
+
+.fullDescription h2::before {
+  content: '<';
+  display: inline-block;
+  /* width: 100px; */
+  height: 2px;
+  margin-right: 0.5rem;
+}
+
+.fullDescription h2::after {
+  content: '/>';
+  display: inline-block;
+  /* width: 100px; */
+  height: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.fullDescription ul {
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
 

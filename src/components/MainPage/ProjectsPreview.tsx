@@ -1,0 +1,60 @@
+'use client';
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useMemo, useRef } from "react";
+import { projects } from '@/ui/data/projects';
+import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
+
+export default function ProjectsPreview() {
+  const containerRef = useRef(null)
+  const projectArray = useMemo(() => Object.values(projects)?.slice(0, 5), [])
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start -15%', 'end end'],
+  })
+
+  const x = useTransform(scrollYProgress, [0, 1], ['10%', `-100%`])
+
+  const length = projectArray.length+1
+  return (
+    <div
+      className="w-full max-w-[100vw] text-white px-[16px] py-[80px] lg:py-[120px] z-[4] relative flex flex-col  items-center"
+      style={{ height: `calc(60vh * ${length})` }}
+      ref={containerRef}
+    >
+      <h2
+        className="text-[12vw] font-bold mx-auto text-center uppercase"
+      >
+        My projects
+      </h2> 
+
+      <div className="sticky top-[10vh] md:top-[16vh] z-[-1] w-full overflow-hidden h-[80vh] flex justify-start">
+        <motion.div style={{ x }} transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }} className="flex gap-[10vw] px-[16px]">
+          {projectArray.map((project, i) => (
+            <Link href={`/projects/${project.slug}`}
+              key={i}
+              className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] bg-neutral-800 rounded-xl flex items-center justify-center text-white text-2xl relative"
+            >
+             <Image src={project.imgUrl} alt={project.title} width={1000} height={900} className="w-full h-full mx-auto object-cover rounded-xl" />
+             <p className="absolute bottom-[-10vh] right-[-20px] text-[20px] md:text-[35px] lg:text-[50px] font-[family-name:var(--font-jetBrains)] uppercase">
+              {'<'}{project.title}{'/>'}
+             </p>
+            </Link>
+          ))}
+          <Link href={'/projects'} 
+            className="min-w-[70vw] lg:min-w-[50vw] h-[60vh] rounded-xl flex items-center justify-center text-[20px] lg:text-[60px] uppercase font-[family-name:var(--font-jetBrains)] "
+          >
+            see all projects
+            <FaArrowRight />
+          </Link>
+        </motion.div>
+      </div>  
+      
+    </div>
+  );
+}
+
+
+
