@@ -1,115 +1,155 @@
-"use client";
-import { useParams } from 'next/navigation';
-import { projects } from '@/ui/data/projects';
-import { useRef } from 'react';
-import {motion, useScroll, useTransform } from 'framer-motion';
+'use client';
+
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
+import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import type { Locale } from '@/i18n/config';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { ViewProject } from '@/lib/projects';
 
+type Props = { project: ViewProject; locale: Locale; labels: Dictionary['caseStudy'] };
 
-export default function ProjectPage() {
-  const slug = useParams().title;
-  const project = projects[slug as keyof typeof projects];
-  const h2Ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: h2Ref,
-    offset: ['start 10%', 'end start'],
-  });
+const sectionTitle = 'text-[20px] lg:text-[26px] mb-[12px] text-[#34c7f8] uppercase font-bold font-[family-name:var(--font-jetBrains)]';
+const bodyText = 'text-[16px] md:text-[18px] lg:text-[20px] text-white/90';
 
+export default function ProjectPage({ project, locale, labels }: Props) {
+  const h1Ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: h1Ref, offset: ['start 10%', 'end start'] });
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  const intro = project.challenge ?? project.idea ?? project.overview;
+  const introTitle = project.challenge ? labels.challenge : project.idea ? labels.idea : labels.overview;
+  const alt = labels.screenshot.replace('{project}', project.title);
+
+  const media = project.imgBlock ?? (
+    project.videoUrl ? (
+      <video src={project.videoUrl} autoPlay loop muted playsInline poster={project.imgUrl} width={1232} height={800}
+        className="rounded-md w-full h-auto" aria-label={alt} />
+    ) : (
+      <Image src={project.imgUrl} alt={alt} width={1440} height={900} priority sizes="(min-width: 1264px) 1232px, 100vw"
+        className="rounded-md w-full h-auto" />
+    )
+  );
+
   return (
-    <div className='flex  gap-[20px] md:gap-[40px] flex-col items-center pb-[120px] px-[16px] max-w-[1600px] mx-auto'>
-     
-      {/* <motion.h1
-        ref={h2Ref}
+    <main className="flex gap-[20px] md:gap-[40px] flex-col items-center pb-[120px] px-[16px] max-w-[1600px] mx-auto">
+      <motion.h1
+        ref={h1Ref}
         style={{ opacity }}
-        className=" text-[12vw] leading-[1.1] font-bold mx-auto uppercase z-[-1] "
+        className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(28px,5vw,60px)] uppercase mt-[40px] mb-[20px] lg:mb-[60px] text-center"
       >
-        {project.title}
-      </motion.h1>  */}
-            {/* <motion.h1 
-            ref={h2Ref}
-        style={{ opacity }}
-            className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold text-center uppercase">{project.title}</motion.h1>
-      */}
-      <motion.h1 
-        ref={h2Ref}
-        style={{ opacity }}
-        className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(20px,5vw,60px)] flex items-center flex-wrap uppercase mt-[40px] mb-[120px]">
-          {"<"}{project.title} {"/>"} 
-          {project.isMyProject && project.href && <span className="text-sm text-[#FFF] ml-2">
-            <Link href={project.href} target="_blank" rel="noopener noreferrer" className="text-[white]">
-              <svg
-                fill="currentColor"
-                width="60"
-                height="60"
-                viewBox="0 0 64 64"
-                className="text-white hover:text-blue-500 transition-colors"
-              >
-                <path d="M36.026,20.058l-21.092,0c-1.65,0 -2.989,1.339 -2.989,2.989l0,25.964c0,1.65 1.339,2.989 2.989,2.989l26.024,0c1.65,0 2.989,-1.339 2.989,-2.989l0,-20.953l3.999,0l0,21.948c0,3.308 -2.686,5.994 -5.995,5.995l-28.01,0c-3.309,0 -5.995,-2.687 -5.995,-5.995l0,-27.954c0,-3.309 2.686,-5.995 5.995,-5.995l22.085,0l0,4.001Z"/>
-                <path d="M55.925,25.32l-4.005,0l0,-10.481l-27.894,27.893l-2.832,-2.832l27.895,-27.895l-10.484,0l0,-4.005l17.318,0l0.002,0.001l0,17.319Z"/>
-              </svg>            </Link>
-            </span>
-          }
+        <span aria-hidden="true">{'<'}</span>{project.title}<span aria-hidden="true">{' />'}</span>
       </motion.h1>
 
-      <div className='flex flex-col gap-[20px] md:gap-[40px] lg:gap-[80px] max-w-[1232px] mx-auto relative '>
-        
-        { project.imgBlock && project.imgBlock}
-        
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-[20px] h-[50vh] '>
-         
-          {project?.overview && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90 my-auto" dangerouslySetInnerHTML={{__html: project.overview}}/>}
-            
-          <Image src={project.imgUrl} alt={project.title} width={1232} height={900} className="w-full h-full mx-auto object-cover rounded-xl" />
-        </div>
-        
-        {project?.structure && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.structure}}/>}
-
-        {project.videoUrl && (
-          <video
-            src={project.videoUrl}
-            autoPlay
-            loop
-            muted
-            poster={project.imgUrl}
-            width={800}
-            height={600}
-            className="rounded-md w-auto h-auto"
-          />
-        )}
-        
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-[20px]'>
-          <div className="flex flex-wrap gap-1  h-fit">
-            {project.stack.map((tech: string, index: number) => (
-              <div key={index} className="flex bg-[#34c7f81A] text-[#34c7f8] px-2 py-0.5 rounded-[5px] w-fit h-fit whitespace-nowrap">
-                {tech}
-              </div>
-            ))}
-            {project.isMyProject && project.href && <span className="text-sm text-[#FFF] ml-2">
-            <Link href={project.href} target="_blank" rel="noopener noreferrer" className="text-[white]">
-              <svg
-                fill="currentColor"
-                width="30"
-                height="30"
-                viewBox="0 0 64 64"
-                className="text-white hover:text-blue-500 transition-colors"
-              >
-                <path d="M36.026,20.058l-21.092,0c-1.65,0 -2.989,1.339 -2.989,2.989l0,25.964c0,1.65 1.339,2.989 2.989,2.989l26.024,0c1.65,0 2.989,-1.339 2.989,-2.989l0,-20.953l3.999,0l0,21.948c0,3.308 -2.686,5.994 -5.995,5.995l-28.01,0c-3.309,0 -5.995,-2.687 -5.995,-5.995l0,-27.954c0,-3.309 2.686,-5.995 5.995,-5.995l22.085,0l0,4.001Z"/>
-                <path d="M55.925,25.32l-4.005,0l0,-10.481l-27.894,27.893l-2.832,-2.832l27.895,-27.895l-10.484,0l0,-4.005l17.318,0l0.002,0.001l0,17.319Z"/>
-              </svg>            </Link>
-            </span>
-          }
+      <div className="flex flex-col gap-[32px] md:gap-[48px] lg:gap-[64px] w-full max-w-[1232px] mx-auto relative">
+        {/* Facts */}
+        <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[16px] text-white/90">
+          <div>
+            <dt className="text-sm text-white/60">{labels.role}</dt>
+            <dd className="font-bold">{project.role}</dd>
           </div>
-          {project?.functionality && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.functionality}}/>}
-            
-        </div>
-        
-        {project?.myRole && <div className="fullDescription text-sm md:text-lg lg:text-xl text-white/90" dangerouslySetInnerHTML={{__html: project.myRole}}/>}
+          {project.year && (
+            <div>
+              <dt className="text-sm text-white/60">{labels.year}</dt>
+              <dd className="font-bold">{project.year}</dd>
+            </div>
+          )}
+          {project.status && (
+            <div>
+              <dt className="text-sm text-white/60">{labels.status}</dt>
+              <dd className="font-bold">{project.status}</dd>
+            </div>
+          )}
+          <div className="sm:col-span-2 lg:col-span-4">
+            <dt className="text-sm text-white/60 mb-[6px]">{labels.stack}</dt>
+            <dd>
+              <ul className="flex flex-wrap gap-1">
+                {project.stack.map((tech) => (
+                  <li key={tech} className="bg-[#34c7f81A] text-[#34c7f8] px-2 py-0.5 rounded-[5px] whitespace-nowrap">{tech}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+          {(project.showLink && project.href) || project.github ? (
+            <div className="flex flex-wrap gap-[16px] sm:col-span-2 lg:col-span-4">
+              {project.showLink && project.href && (
+                <a href={project.href} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-[#34c7f8]">
+                  <FaExternalLinkAlt aria-hidden="true" /> {labels.visit}
+                </a>
+              )}
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-[#34c7f8]">
+                  <FaGithub aria-hidden="true" /> {labels.github}
+                </a>
+              )}
+            </div>
+          ) : null}
+        </dl>
+
+        <div className="w-full">{media}</div>
+
+        {intro && (
+          <section>
+            <h2 className={sectionTitle}>{introTitle}</h2>
+            <p className={`${bodyText} max-w-[900px]`}>{intro}</p>
+          </section>
+        )}
+
+        <section>
+          <h2 className={sectionTitle}>{project.inProgress ? labels.building : labels.whatIDid}</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+            {project.whatIDid.map((step, i) => (
+              <li key={i} className="rounded-xl bg-[#001f41]/80 border border-white/10 p-[16px]">
+                {step.title && <h3 className="font-bold uppercase mb-[6px]">{step.title}</h3>}
+                <p className="text-white/85">{step.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {project.gallery?.map((src) => (
+          <Image key={src} src={src} alt={alt} width={1440} height={900} sizes="(min-width: 1264px) 1232px, 100vw"
+            className="rounded-md w-full h-auto" />
+        ))}
+
+        {project.decisions && (
+          <section>
+            <h2 className={sectionTitle}>{labels.decisions}</h2>
+            <p className={`${bodyText} max-w-[900px]`}>{project.decisions}</p>
+          </section>
+        )}
+
+        {project.features && (
+          <section>
+            <h2 className={sectionTitle}>{labels.features}</h2>
+            <ul className={`${bodyText} list-disc list-inside space-y-1`}>
+              {project.features.map((f) => <li key={f}>{f}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {project.result && (
+          <section>
+            <h2 className={sectionTitle}>{labels.result}</h2>
+            <p className={`${bodyText} max-w-[900px]`}>{project.result}</p>
+          </section>
+        )}
+
+        {project.why && (
+          <section>
+            <h2 className={sectionTitle}>{labels.why}</h2>
+            <p className={`${bodyText} max-w-[900px]`}>{project.why}</p>
+          </section>
+        )}
+
+        <Link href={`/${locale}/projects`} className="flex items-center gap-[8px] font-bold uppercase w-fit">
+          <FaArrowLeft aria-hidden="true" /> {labels.back}
+        </Link>
       </div>
-      
-    </div>
+    </main>
   );
 }
-
-

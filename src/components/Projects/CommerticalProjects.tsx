@@ -6,7 +6,9 @@ import ProjectSmallCard from '@/ui/wrappers/ProjectSmallCard';
 import { easeOut, motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import Image from 'next/image';
 import { useRef } from "react";
-import { projects } from '@/ui/data/projects';
+import type { Locale } from '@/i18n/config';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { ViewProject } from '@/lib/projects';
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -110,23 +112,16 @@ const COL: Record<number, string> = {
 };
 
 // ─── Additional projects list ─────────────────────────────────────────────
-// Add new projects here. The block system will fit them in automatically.
-const remainingProjects = [
-  projects.flare,
-  projects.indigo,
-  projects.addup,
-  projects.shop2mob,
-  projects.derma,
-  projects.feecutex,
-  projects.adsee,
-  projects.slava,
-  projects.iqpoint,
-  projects.iqresidence,
-  projects.pershiledy,
-];
+// Add new project slugs here. The block system will fit them in automatically.
+const REMAINING = ['indigo', 'addup', 'slava', 'iqpoint', 'pershiledy'];
 
 // ─── Component ───────────────────────────────────────────────────────────────
-export default function CommercialProjects() {
+type Props = { locale: Locale; dict: Dictionary; projects: Record<string, ViewProject> };
+
+export default function CommercialProjects({ locale, dict, projects }: Props) {
+  const roleLabel = dict.caseStudy.role;
+  const group = dict.projectsPage.groups.client;
+  const remainingProjects = REMAINING.map((slug) => projects[slug]).filter(Boolean);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { margin: '-50% 0px -100% 0px', once: true });
   const h2Ref = useRef(null);
@@ -152,62 +147,64 @@ export default function CommercialProjects() {
   }
 
   return (
-    <div
-      className="text-white px-[16px] z-[4] relative flex flex-col justify-center items-center"
+    <section
+      id="client-work"
+      className="text-white px-[16px] z-[4] relative flex flex-col justify-center items-center scroll-mt-[80px]"
       ref={containerRef}
     >
-      <motion.h1
+      <motion.h2
         ref={h2Ref}
         style={{ opacity }}
         className="mb-[40px] text-[12vw] font-bold mx-auto text-center uppercase sticky top-0 z-[-1]"
       >
-        My projects
-      </motion.h1>
+        {group.title}
+      </motion.h2>
+      <p className="text-[16px] lg:text-[20px] opacity-80 text-center max-w-[720px]">{group.description}</p>
 
       <div className="grid grid-cols-7 gap-[20px] auto-rows-[minmax(200px,_auto)] max-w-[1232px] mx-auto mt-[120px]">
 
         {/* ── Row 1 ──────────────────────────────────────────────────────── */}
         <motion.div custom={0} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
           className="col-span-7 lg:col-span-4 row-start-1 bg-[#001f41] rounded-xl p-4">
-          <ProjectCard {...projects.oikia} />
+          <ProjectCard project={projects.oikia} locale={locale} roleLabel={roleLabel} />
         </motion.div>
 
         <div className="col-span-7 md:col-span-2 lg:col-span-1 lg:row-start-1 flex md:flex-col gap-[20px]">
           <motion.div custom={1} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
             className="bg-[#262D3C] rounded-xl p-4">
-            <ProjectCard {...projects.c13} />
+            <ProjectCard project={projects.c13} locale={locale} roleLabel={roleLabel} />
           </motion.div>
           <motion.div custom={2} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
             className="bg-[#182C40] rounded-xl p-4">
-            <ProjectSmallCard {...projects.mysiteboost} />
+            <ProjectSmallCard project={projects.mysiteboost} locale={locale} />
           </motion.div>
         </div>
 
         <motion.div custom={3} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
           className="col-span-7 md:col-span-5 lg:col-span-2 lg:row-start-1 bg-[#001f41] rounded-xl p-4">
-          <ProjectCard {...projects.proptick} />
+          <ProjectCard project={projects.proptick} locale={locale} roleLabel={roleLabel} />
         </motion.div>
 
         {/* ── Row 2 ──────────────────────────────────────────────────────── */}
         <motion.div custom={4} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
           className="relative col-span-7 md:col-span-4 lg:col-span-4 lg:row-start-2 bg-[#262D3C] p-4 rounded-xl">
-          <Image src="/projects/blackbookbykristina.png" alt="blackbookbykristina" fill
+          <Image src="/projects/blackbookbykristina.png" alt="" fill sizes="(min-width: 1024px) 700px, 100vw"
             className="absolute w-full h-full object-cover brightness-50 rounded-xl" />
-          <ProjectCard {...projects.blackbookbykristina} />
+          <ProjectCard project={projects.blackbookbykristina} locale={locale} roleLabel={roleLabel} />
         </motion.div>
 
         <motion.div custom={5} variants={itemVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}
           className="col-span-7 md:col-span-3 lg:col-start-5 lg:col-span-3 lg:row-start-2 lg:row-end-4 bg-[#262D3C] rounded-xl p-4">
-          <ProjectCard {...projects.supertrade} />
+          <ProjectCard project={projects.flare} locale={locale} roleLabel={roleLabel} />
         </motion.div>
 
         {/* ── Row 3 — 4 small cards + supertrade continues ──────────────── */}
         <div className="col-span-7 lg:col-span-4 lg:row-start-3 grid grid-cols-2 md:grid-cols-4 gap-[20px]">
-          {[projects.pinta, projects.bleakers, projects.opps, projects.notifix].map((project, i) => (
+          {[projects.pinta, projects.feecutex, projects.opps, projects.iqresidence].map((project, i) => (
             <motion.div key={project.slug} custom={6 + i} variants={itemVariants} initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               className={cn('rounded-xl p-4', i % 2 === 0 ? 'bg-[#262D3C]' : 'bg-[#182C40]')}>
-              <ProjectSmallCard {...project} />
+              <ProjectSmallCard project={project} locale={locale} />
             </motion.div>
           ))}
         </div>
@@ -241,7 +238,7 @@ export default function CommercialProjects() {
                       <motion.div key={project.slug} custom={animI + si} variants={itemVariants}
                         initial="hidden" animate={isInView ? 'visible' : 'hidden'}
                         className={cn('rounded-xl p-4 relative', si % 2 === 0 ? 'bg-[#262D3C]' : 'bg-[#182C40]')}>
-                        <ProjectSmallCard {...project} />
+                        <ProjectSmallCard project={project} locale={locale} />
                       </motion.div>
                     ))}
                   </div>
@@ -257,10 +254,10 @@ export default function CommercialProjects() {
                     className="col-span-7 lg:col-span-3 lg:row-span-2 rounded-xl p-4 relative"
                     style={{ backgroundColor: getBg(animI) }}>
                     {bigRight?.imgUrl && !bigRight?.imgBlock && !bigRight?.imgSmall && (
-                      <Image src={bigRight.imgUrl} alt={bigRight.title} fill
+                      <Image src={bigRight.imgUrl} alt="" fill sizes="(min-width: 1024px) 530px, 100vw"
                         className="absolute z-[1] w-full h-full object-cover brightness-70 rounded-xl" />
                     )}
-                    <ProjectCard {...bigRight} />
+                    <ProjectCard project={bigRight} locale={locale} roleLabel={roleLabel} />
                   </motion.div>
                 );
                 animI++;
@@ -288,12 +285,12 @@ export default function CommercialProjects() {
                   className={cn('rounded-xl p-4 relative', colClass, rowSpanClass)}
                   style={{ backgroundColor: getBg(animI) }}>
                   {project?.imgUrl && !project?.imgBlock && !project?.imgSmall && (
-                    <Image src={project.imgUrl} alt={project.title} fill
+                    <Image src={project.imgUrl} alt="" fill sizes="(min-width: 1024px) 530px, 100vw"
                       className="absolute z-[1] w-full h-full object-cover brightness-70 rounded-xl" />
                   )}
                   {cell.type === 'large'
-                    ? <ProjectCard {...project} />
-                    : <ProjectSmallCard {...project} />}
+                    ? <ProjectCard project={project} locale={locale} roleLabel={roleLabel} />
+                    : <ProjectSmallCard project={project} locale={locale} />}
                 </motion.div>
               );
               animI++;
@@ -307,6 +304,6 @@ export default function CommercialProjects() {
         })()}
 
       </div>
-    </div>
+    </section>
   );
 }
