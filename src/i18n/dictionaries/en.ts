@@ -1,0 +1,117 @@
+const en = {
+  meta: {
+    homeTitle: 'Valeriia Petropavlovska — Product-minded Frontend Developer',
+    homeDescription:
+      'Frontend developer who takes web products from idea to launch: structure, Next.js and TypeScript, SEO and performance. 3+ years, 20+ projects.',
+    projectsTitle: 'Projects — Valeriia Petropavlovska',
+    projectsDescription:
+      'Client websites, end-to-end products and my own apps: real estate, travel, fintech and SaaS on Next.js.',
+    caseTitle: '{project} — Case Study · Valeriia Petropavlovska',
+    caseRole: 'My role: {role}.',
+    jobTitle: 'Frontend Developer',
+  },
+  nav: {
+    home: 'Home',
+    howIWork: 'How I work',
+    skills: 'Skills',
+    projects: 'Projects',
+    contact: 'Contact',
+    menu: 'Open menu',
+    closeMenu: 'Close menu',
+    language: 'Language',
+  },
+  hero: {
+    name: 'Valeriia Petropavlovska',
+    tagline: 'Product-minded frontend developer — from idea to launched product.',
+    text: 'I take web products from a rough idea to production: shaping the concept, planning the structure, building on Next.js and TypeScript, and launching with SEO and performance in place. 3+ years, 20+ shipped projects for clients in Europe and Ukraine.',
+    downloadCv: 'Download CV',
+    contact: 'Get in touch',
+    availability: 'Open to full-time remote roles and selected freelance projects.',
+  },
+  howIWork: {
+    title: 'How I work',
+    subtitle: 'From idea to product — one person, the whole path.',
+    steps: [
+      { title: 'Idea', text: 'I dig into the business goal and the audience, and turn a vague request into a clear scope.' },
+      { title: 'Structure', text: 'Sitemap, user flows, content and SEO plan before any pixels.' },
+      { title: 'Design', text: 'Working with a designer or prototyping the interface myself, with AI tools to move fast.' },
+      { title: 'Build', text: 'Next.js, TypeScript, Tailwind; a component system on design tokens; CMS and API integrations.' },
+      { title: 'Launch', text: 'Metadata, sitemap, redirects, analytics and performance checks (Lighthouse up to 92).' },
+      { title: 'Grow', text: 'New sections, languages and features after release.' },
+    ],
+  },
+  whatIDo: {
+    title: 'What I do',
+    subtitle: 'The parts of a product I own, from the first call to release.',
+    items: [
+      { question: 'Products from scratch', answer: 'Websites, platforms and MVPs — from brief and structure to deployment.' },
+      { question: 'Frontend on Next.js', answer: 'App Router, server rendering, reusable UI components, responsive and accessible interfaces.' },
+      { question: 'SEO & performance', answer: 'Metadata, sitemaps, hreflang, safe migrations with redirects, Core Web Vitals.' },
+      { question: 'Integrations', answer: 'Headless CMS (DatoCMS, Strapi), REST and GraphQL APIs, CRM, payments, forms.' },
+      { question: 'Multilingual products', answer: 'i18n, localized content and URLs for several markets.' },
+    ],
+  },
+  skills: [
+    { title: 'Product', items: ['Discovery & scoping', 'User flows', 'Sitemap', 'Client communication', 'Task planning'] },
+    { title: 'Frontend', items: ['Next.js (App Router, SSR/SSG/ISR)', 'React', 'TypeScript'] },
+    { title: 'UI', items: ['Tailwind CSS', 'Design tokens', 'Chakra UI', 'Framer Motion', 'GSAP', 'Three.js'] },
+    { title: 'Data', items: ['REST', 'GraphQL', 'WebSockets', 'React Query', 'Redux Toolkit', 'DatoCMS', 'Strapi', 'Firebase', 'Supabase'] },
+    { title: 'SEO & performance', items: ['Metadata', 'Sitemap', 'hreflang', 'Redirects', 'Core Web Vitals', 'Lighthouse'] },
+    { title: 'Workflow', items: ['Git & PR review', 'CI/CD', 'Figma', 'Webflow', 'AI-first development with Claude'] },
+  ],
+  preview: {
+    title: 'Selected work',
+    subtitle: 'Products I built end-to-end, from the first call to launch.',
+    all: 'See all projects',
+  },
+  contact: {
+    title: 'Have a product in mind or a role to fill?',
+    subtitle: 'Write to me — email or Telegram work best.',
+    email: 'Email',
+    telegram: 'Telegram',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    downloadCv: 'Download CV',
+  },
+  footer: {
+    rights: 'Valeriia Petropavlovska',
+    availability: 'Open to remote roles and freelance projects.',
+    allProjects: 'All projects',
+  },
+  projectsPage: {
+    title: 'Projects',
+    intro: 'Products I have taken from idea to launch — as a developer, as a PM, and for myself.',
+    groups: {
+      client: { title: 'Client work', description: 'Websites and platforms I built for agencies and direct clients.' },
+      product: {
+        title: 'From idea to product',
+        description: 'Client projects I led end-to-end: discovery, structure, design with AI tools, development and launch.',
+      },
+      own: { title: 'My projects', description: 'Experiments and products I build on my own.' },
+    },
+  },
+  caseStudy: {
+    role: 'Role',
+    stack: 'Stack',
+    year: 'Year',
+    status: 'Status',
+    visit: 'Visit site',
+    github: 'GitHub',
+    overview: 'Overview',
+    challenge: 'Challenge',
+    idea: 'The idea',
+    whatIDid: 'What I did',
+    building: 'What I’m building',
+    decisions: 'Key decisions',
+    result: 'Result',
+    features: 'Features',
+    why: 'Why',
+    back: 'All projects',
+    screenshot: 'Screenshot of {project}',
+  },
+  breadcrumbs: { label: 'Breadcrumb' },
+  notFound: { title: 'Page not found', text: 'This page does not exist or was moved.', back: 'Back to home' },
+};
+
+export default en;
+export type Dictionary = typeof en;

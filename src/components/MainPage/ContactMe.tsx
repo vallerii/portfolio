@@ -1,89 +1,55 @@
-'use client';
+import { FaDownload, FaEnvelope, FaGithub, FaLinkedin, FaTelegramPlane } from "react-icons/fa";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { PERSON } from "@/lib/site";
 
-import Link from "next/link";
-import { FaDownload, FaPhone } from "react-icons/fa";
+type Props = { data: Dictionary['contact'] };
 
-export default function ContactMe() {
+// !w-full: globals.css sets `a { width: fit-content }`, cards must fill their grid cell
+const card = "!w-full h-full bg-[#182C40] rounded-xl p-4 flex items-center gap-[12px] min-h-[72px] min-w-0 hover:bg-[#1f3a55] transition-colors";
 
+export default function ContactMe({ data }: Props) {
   return (
-    <div
-      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col mt-[-40vh] z-[10] relative"
-      style={{ background: '' }}
+    <section
+      className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full flex flex-col mt-[-40vh] z-[10] relative scroll-mt-[80px]"
       id="contact"
+      aria-labelledby="contact-title"
     >
-      <p className="text-[16px] lg:text-[20px] opacity-80 text-center font-[family-name:var(--font-jetBrains)]">{"<Let's build something cool together />"}</p>
-      <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold text-center uppercase">Contact me</h2>
-      
-      <div className="flex flex-col md:flex-row gap-[20px] mx-auto mt-[20px] md:mt-[40px] lg:mt-[60px]">
-        <div className="flex flex-col gap-[20px] h-[260px] w-full min-w-[290px] max-w-[330px]">
-          {/* Телефон + WhatsApp */}
-          
-          <div className="bg-[#182C40] rounded-xl p-4 h-full w-full flex items-center justify-center gap-[12px]">
-              
-            <Link
-              href="https://wa.me/380501305907"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-full w-full flex items-center justify-center gap-[12px] whitespace-nowrap "
-            >
-              <FaPhone />  +38 (050) 130-59-07
-            
-              
-            </Link>
-          </div>
-          {/* Кнопка скачать CV */}
-          <div className="bg-[#262D3C] rounded-xl p-4 h-full w-full flex items-center justify-center">
-            <a
-              href="/cv.pdf"
-              download
-              className="flex items-center gap-[12px] text-white hover:text-gray-300 h-full w-full whitespace-nowrap"
-            >
-              <FaDownload /> Download CV
-            </a>
-          </div>
-        </div>
+      <h2 id="contact-title" className="text-[32px] sm:text-[44px] lg:text-[54px] font-bold text-center uppercase max-w-[900px] mx-auto">
+        {data.title}
+      </h2>
+      <p className="text-[16px] lg:text-[20px] opacity-80 text-center mt-[12px]">{data.subtitle}</p>
 
-        {/* LinkedIn */}
-        <div className="flex flex-col gap-[12px] w-full max-w-[330px] overflow-hidden">
-          <div
-            className="badge-base LI-profile-badge mx-auto md:hidden"
-            data-locale="en_US"
-            data-size="medium"
-            data-theme="light"
-            data-type="HORIZONTAL"
-            data-vanity="valleri"
-            data-version="v1"
-          >
-            <a
-              className="badge-base__link LI-simple-link hidden"
-              href="https://ua.linkedin.com/in/valleri?trk=profile-badge"
-            >
-              Valeriia Petropavlovska
+      <div className="mx-auto mt-[20px] md:mt-[40px] lg:mt-[60px] w-full max-w-[760px]">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-[20px] w-full">
+          <li>
+            <a href={`mailto:${PERSON.email}`} className={card}>
+              <FaEnvelope aria-hidden="true" />
+              <span className="min-w-0 break-all"><span className="sr-only">{data.email}: </span>{PERSON.email}</span>
             </a>
-          </div>
+          </li>
+          <li>
+            <a href={PERSON.telegram} target="_blank" rel="noopener noreferrer" className={card}>
+              <FaTelegramPlane aria-hidden="true" /> {data.telegram} {PERSON.telegramHandle}
+            </a>
+          </li>
+          <li>
+            <a href={PERSON.linkedin} target="_blank" rel="noopener noreferrer" className={card}>
+              <FaLinkedin aria-hidden="true" /> {data.linkedin}
+            </a>
+          </li>
+          <li>
+            <a href={PERSON.github} target="_blank" rel="noopener noreferrer" className={card}>
+              <FaGithub aria-hidden="true" /> {data.github}
+            </a>
+          </li>
+          <li className="sm:col-span-2">
+            <a href={PERSON.cv} download className={`${card} bg-[#262D3C] justify-center font-bold uppercase`}>
+              <FaDownload aria-hidden="true" /> {data.downloadCv}
+            </a>
+          </li>
+        </ul>
 
-          <div
-            className="badge-base LI-profile-badge hidden md:block"
-            data-locale="en_US"
-            data-size="large"
-            data-theme="light"
-            data-type="HORIZONTAL"
-            data-vanity="valleri"
-            data-version="v1"
-          >
-            <a
-              className="badge-base__link LI-simple-link hidden"
-              href="https://ua.linkedin.com/in/valleri?trk=profile-badge"
-            >
-              Valeriia Petropavlovska
-            </a>
-          </div>
-        </div>
       </div>
-
-    </div>
+    </section>
   );
 }
-
-
-

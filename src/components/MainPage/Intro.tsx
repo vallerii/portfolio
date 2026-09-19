@@ -2,97 +2,76 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import { useRef } from 'react';
+import { FaArrowRight, FaDownload } from 'react-icons/fa';
+import type { Dictionary } from '@/i18n/dictionaries';
+import { PERSON } from '@/lib/site';
 
-const letters = 'Petropavlovska_Valeriia'.split('');
+type Props = { hero: Dictionary['hero'] };
 
-export default function Intro() {
-  const [showBrackets, setShowBrackets] = useState(false);
-  const [showName, setShowName] = useState(false);
-  const [showText, setShowText] = useState(false);
-
+export default function Intro({ hero }: Props) {
   const sectionRef = useRef(null);
-  const contentRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
 
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
 
-  useEffect(() => {
-    const t1 = setTimeout(() => setShowBrackets(true), 300);
-    const t2 = setTimeout(() => setShowName(true), 1000);
-    const t3 = setTimeout(() => setShowText(true), 3000);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, []);
+  const letters = hero.name.replace(/\s+/g, '_').split('');
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full " 
-    >  
+    <section ref={sectionRef} className="relative w-full">
       <motion.div
-        ref={contentRef}
-        style={{ scale, opacity, y , }}
-        className="sticky top-0 h-screen pt-[30vh] flex flex-col items-start px-[16px] py-[20px] max-w-[1232px] mx-auto gap-[30px] lg:gap-[60px]"
+        style={{ scale, opacity, y }}
+        className="sticky top-0 h-screen pt-[22vh] flex flex-col items-start px-[16px] py-[20px] max-w-[1232px] mx-auto gap-[24px] lg:gap-[40px]"
       >
-       
+        {/* Screen readers and search engines get the plain name; the animated letters are decorative */}
         <h1 className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(20px,5vw,60px)] flex items-center flex-wrap uppercase">
-          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>&lt;</motion.span>}
-
-          {showName &&
-            letters.map((letter, index) => (
+          <span className="sr-only">{hero.name}</span>
+          <span aria-hidden="true" className="flex flex-wrap">
+            <span>&lt;</span>
+            {letters.map((letter, index) => (
               <motion.span
                 key={index}
-                initial={{ opacity: 0, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 + index * 0.03 }}
               >
                 {letter}
               </motion.span>
             ))}
-
-          {showBrackets && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>/&gt;</motion.span>}
+            <span>/&gt;</span>
+          </span>
         </h1>
 
-        {showText && (
-          <motion.div
-            className="text-[16px] lg:text-[24px] max-w-[930px] opacity-80"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            Frontend developer with <strong>2+ years</strong> of experience building 
-            responsive, 
-            performant & 
-            accessible websites.
-            <br />
-            {/* <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />React,</span>
-            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />Next.js,</span>
-            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />Tailwind,</span>
-            <span className="font-bold flex items-center gap-[8px]"><FaArrowRight />...</span> */}
-            {/* Focused on clean, accessible, and animated UI. Passionate about user
-            experience and performance. */}
-            <br />
-            Open to remote and freelance opportunities.
+        <motion.div
+          className="flex flex-col gap-[16px] max-w-[930px]"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-[20px] lg:text-[32px] font-bold leading-tight">{hero.tagline}</p>
+          <p className="text-[16px] lg:text-[20px] opacity-80">{hero.text}</p>
 
-            <Link href={'#contact'} className="flex items-center gap-[8px] font-bold uppercase mt-[30px] lg:mt-[60px] ml-auto w-fit" >
-              <FaArrowRight />Contact me
+          <div className="flex flex-wrap gap-[16px] mt-[16px] lg:mt-[32px]">
+            <a
+              href={PERSON.cv}
+              download
+              className="flex items-center gap-[8px] font-bold uppercase rounded-full bg-white text-[#001135] px-[20px] py-[10px] hover:bg-[#34c7f8]"
+            >
+              <FaDownload aria-hidden="true" /> {hero.downloadCv}
+            </a>
+            <Link
+              href="#contact"
+              className="flex items-center gap-[8px] font-bold uppercase rounded-full border border-white/60 px-[20px] py-[10px]"
+            >
+              <FaArrowRight aria-hidden="true" /> {hero.contact}
             </Link>
-          </motion.div>
-        )}
+          </div>
+          <p className="text-[14px] lg:text-[16px] opacity-70">{hero.availability}</p>
+        </motion.div>
       </motion.div>
-      <div className='h-[90vh]'/>
-      
+      <div className="h-[90vh]" />
     </section>
   );
 }
