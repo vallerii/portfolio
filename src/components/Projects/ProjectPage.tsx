@@ -11,7 +11,7 @@ import type { ViewProject } from '@/lib/projects';
 
 type Props = { project: ViewProject; locale: Locale; labels: Dictionary['caseStudy'] };
 
-const sectionTitle = 'text-[20px] lg:text-[26px] mb-[12px] text-[#34c7f8] uppercase font-bold font-[family-name:var(--font-jetBrains)]';
+const sectionTitle = 'text-[14px] lg:text-[16px] mb-[20px] text-accent uppercase tracking-[0.18em] font-bold font-[family-name:var(--font-jetBrains)]';
 const bodyText = 'text-[16px] md:text-[18px] lg:text-[20px] text-white/90';
 
 export default function ProjectPage({ project, locale, labels }: Props) {
@@ -38,9 +38,9 @@ export default function ProjectPage({ project, locale, labels }: Props) {
       <motion.h1
         ref={h1Ref}
         style={{ opacity }}
-        className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(28px,5vw,60px)] uppercase mt-[40px] mb-[20px] lg:mb-[60px] text-center"
+        className="font-bold text-[clamp(36px,6vw,104px)] uppercase tracking-[-0.03em] leading-[0.86] mt-[40px] mb-[20px] lg:mb-[60px] self-start max-w-[1232px] w-full"
       >
-        <span aria-hidden="true">{'<'}</span>{project.title}<span aria-hidden="true">{' />'}</span>
+        {project.title}
       </motion.h1>
 
       <div className="flex flex-col gap-[32px] md:gap-[48px] lg:gap-[64px] w-full max-w-[1232px] mx-auto relative">
@@ -67,7 +67,7 @@ export default function ProjectPage({ project, locale, labels }: Props) {
             <dd>
               <ul className="flex flex-wrap gap-1">
                 {project.stack.map((tech) => (
-                  <li key={tech} className="bg-[#34c7f81A] text-[#34c7f8] px-2 py-0.5 rounded-[5px] whitespace-nowrap">{tech}</li>
+                  <li key={tech} className="text-accent whitespace-nowrap after:content-['·'] after:mx-2 after:text-muted last:after:content-['']">{tech}</li>
                 ))}
               </ul>
             </dd>
@@ -76,13 +76,13 @@ export default function ProjectPage({ project, locale, labels }: Props) {
             <div className="flex flex-wrap gap-[16px] sm:col-span-2 lg:col-span-4">
               {project.showLink && project.href && (
                 <a href={project.href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-[#34c7f8]">
+                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-accent">
                   <FaExternalLinkAlt aria-hidden="true" /> {labels.visit}
                 </a>
               )}
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-[#34c7f8]">
+                  className="flex items-center gap-[8px] rounded-full border border-white/60 px-[16px] py-[8px] hover:border-accent">
                   <FaGithub aria-hidden="true" /> {labels.github}
                 </a>
               )}
@@ -103,7 +103,7 @@ export default function ProjectPage({ project, locale, labels }: Props) {
           <h2 className={sectionTitle}>{project.inProgress ? labels.building : labels.whatIDid}</h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
             {project.whatIDid.map((step, i) => (
-              <li key={i} className="rounded-xl bg-[#001f41]/80 border border-white/10 p-[16px]">
+              <li key={i} className="pt-4 border-t border-line">
                 {step.title && <h3 className="font-bold uppercase mb-[6px]">{step.title}</h3>}
                 <p className="text-white/85">{step.text}</p>
               </li>

@@ -24,7 +24,7 @@ function FloatingParticles() {
       ),
       scale: THREE.MathUtils.randFloat(0.1, 0.4),
       material: new THREE.MeshBasicMaterial({
-        color: 'rgb(0, 17, 53)',
+        color: '#0E3327',
         transparent: true,
         opacity: 0,
       }),

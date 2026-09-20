@@ -1,51 +1,32 @@
 @import "tailwindcss";
 
-/* html, body {
-  overflow-x: hidden;
-} */
+/* Design tokens — change the theme here.
+   Declared in @theme so Tailwind generates utilities: bg-accent, text-muted, border-line… */
+@theme {
+  --color-deep: #04140F;
+  --color-forest: #0B3327;
+  --color-surface: #0E3327;
+  --color-ink: #F1F5F1;
+  --color-muted: #9DB2A8;
+  --color-accent: #FF8A45;
+  --color-accent-soft: #FFB184;
+  --color-line: rgba(241, 245, 241, 0.16);
+}
 
 body {
-  /* background: rgb(0, 17, 53) 061329; */
-  background: linear-gradient(135deg,rgb(10, 31, 148) 0%, rgb(0, 17, 53) 60% 100%);
-  color: #FFF;
+  background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-deep) 60% 100%);
+  background-attachment: fixed;
+  color: var(--color-ink);
   font-family: Inter, Helvetica, sans-serif;
 }
 
 a:hover {
-  color: #34c7f8;
+  color: var(--color-accent);
   opacity: 1;
   transition: all 0.3s ease-in-out;
 }
 a {
   width: fit-content ;
-}
-
-.sunnyShadow:hover {
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 0px 4px 2px #F9D44DCC, 0px 0px 16px 5px #f5b100;
-}
-.sunnyInnerShadow {
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 0px 4px 2px #F9D44DCC, 0px 0px 16px 5px #f5b100;
-}
-
-@keyframes custom-pulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(0.95);
-    opacity: 1;
-  }
-}
-
-.custom-pulse {
-  animation: custom-pulse 5s ease-in-out infinite;
 }
 
 .mask-container {
@@ -63,7 +44,12 @@ a {
 }
 
 .circle-animation {
-  background: radial-gradient(50% 38.42% at 50% 50%, #FFFFFF 0%, #4E53FF 35.58%, rgba(2, 2, 18, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  background: radial-gradient(
+    50% 38.42% at 50% 50%,
+    var(--color-accent-soft) 0%,
+    var(--color-accent) 35.58%,
+    rgba(4, 20, 15, 0) 100%
+  );
   animation: moveCircle 4s linear infinite;
   top: -50%;
   left: -50%;
@@ -77,45 +63,3 @@ a {
     transform: translate(50%, -50%);
   }
 }
-.fullDescription {
-  z-index: 10;
-}
-
-.fullDescription h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  color: #34c7f8;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: var(--font-jetBrains) ;
-}
-
-.fullDescription h2::before {
-  content: '<';
-  display: inline-block;
-  /* width: 100px; */
-  height: 2px;
-  margin-right: 0.5rem;
-}
-
-.fullDescription h2::after {
-  content: '/>';
-  display: inline-block;
-  /* width: 100px; */
-  height: 2px;
-  margin-bottom: 0.5rem;
-}
-
-.fullDescription ul {
-  list-style-type: disc;
-  list-style-position: inside;
-}
-
-
-/* colors */
-
-/* 
-acsent #34c7f8
-dark blue #061329
-dark green #142835 
-*/

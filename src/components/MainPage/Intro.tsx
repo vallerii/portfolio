@@ -23,52 +23,50 @@ export default function Intro({ hero }: Props) {
     <section ref={sectionRef} className="relative w-full">
       <motion.div
         style={{ scale, opacity, y }}
-        className="sticky top-0 h-screen pt-[22vh] flex flex-col items-start px-[16px] py-[20px] max-w-[1232px] mx-auto gap-[24px] lg:gap-[40px]"
+        className="sticky top-0 h-[100svh] pt-[13vh] pb-[6vh] flex flex-col items-start justify-center px-[16px] max-w-[1400px] mx-auto gap-[clamp(10px,1.6vh,20px)] w-full"
       >
         {/* Screen readers and search engines get the plain name; the animated letters are decorative */}
-        <h1 className="font-[family-name:var(--font-jetBrains)] font-bold text-[clamp(20px,5vw,60px)] flex items-center flex-wrap uppercase">
-          <span className="sr-only">{hero.name}</span>
-          <span aria-hidden="true" className="flex flex-wrap">
-            <span>&lt;</span>
+        <p className="font-[family-name:var(--font-jetBrains)] text-[13px] lg:text-[15px] uppercase tracking-[0.3em] text-accent">
+          <span className="sr-only">{hero.name}. </span>
+          <span aria-hidden="true">
             {letters.map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 + index * 0.03 }}
-              >
+              <motion.span key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 + index * 0.02 }}>
                 {letter}
               </motion.span>
             ))}
-            <span>/&gt;</span>
           </span>
+        </p>
+
+        <h1 className="font-bold uppercase text-[clamp(30px,4.6vw,76px)] leading-[0.95] tracking-[-0.03em] max-w-[16ch]">
+          {hero.headline}
         </h1>
 
+        <p className="text-[17px] lg:text-[22px] font-medium text-ink/85 max-w-[30ch]">{hero.role}</p>
+
         <motion.div
-          className="flex flex-col gap-[16px] max-w-[930px]"
+          className="flex flex-col gap-[clamp(12px,1.8vh,22px)] max-w-[760px] mt-[clamp(8px,1.6vh,24px)]"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-[20px] lg:text-[32px] font-bold leading-tight">{hero.tagline}</p>
-          <p className="text-[16px] lg:text-[20px] opacity-80">{hero.text}</p>
+          <p className="text-[16px] lg:text-[19px] leading-[1.5] text-ink/75 max-w-[56ch]">{hero.text}</p>
 
-          <div className="flex flex-wrap gap-[16px] mt-[16px] lg:mt-[32px]">
+          <div className="flex flex-wrap gap-[14px] mt-[6px]">
             <a
               href={PERSON.cv}
               download
-              className="flex items-center gap-[8px] font-bold uppercase rounded-full bg-white text-[#001135] px-[20px] py-[10px] hover:bg-[#34c7f8]"
+              className="flex items-center gap-[10px] font-bold uppercase tracking-[0.08em] text-[15px] bg-accent text-deep px-[24px] py-[13px] rounded-full hover:opacity-90"
             >
               <FaDownload aria-hidden="true" /> {hero.downloadCv}
             </a>
             <Link
               href="#contact"
-              className="flex items-center gap-[8px] font-bold uppercase rounded-full border border-white/60 px-[20px] py-[10px]"
+              className="flex items-center gap-[10px] font-bold uppercase tracking-[0.08em] text-[15px] border border-line px-[24px] py-[13px] rounded-full hover:border-accent"
             >
               <FaArrowRight aria-hidden="true" /> {hero.contact}
             </Link>
           </div>
-          <p className="text-[14px] lg:text-[16px] opacity-70">{hero.availability}</p>
+          <p className="text-[14px] lg:text-[15px] text-muted">{hero.availability}</p>
         </motion.div>
       </motion.div>
       <div className="h-[90vh]" />

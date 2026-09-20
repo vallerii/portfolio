@@ -14,8 +14,8 @@ export default function WhatIDo({ data, skills }: Props) {
       id='skills'
     >
       <div className="flex flex-col gap-[12px] w-full max-w-[400px] ">
-        <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold uppercase max-w-[330px]">{data.title}</h2>
-        <p className="text-[16px] lg:text-[24px] opacity-80 max-w-[330px]">
+        <h2 className="text-[11vw] lg:text-[6vw] font-bold uppercase tracking-[-0.03em] leading-[0.86] max-w-[8ch]">{data.title}</h2>
+        <p className="text-[17px] lg:text-[20px] text-muted max-w-[330px] mt-[16px]">
           {data.subtitle}
         </p>
         <div className='lg:my-[600px] display-none lg:block'>

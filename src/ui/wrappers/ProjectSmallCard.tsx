@@ -8,7 +8,7 @@ type Props = { project: ViewProject; locale: Locale };
 export default function ProjectSmallCard({ project, locale }: Props) {
   const { slug, title, stack, imgSmall } = project;
   return (
-    <Link href={`/${locale}/projects/${slug}`} className="space-y-3 h-full flex flex-col relative z-[2]">
+    <Link href={`/${locale}/projects/${slug}`} className="group h-full flex flex-col gap-3 relative z-[2]">
       {imgSmall && (
         <div className="relative w-full h-full rounded-lg overflow-hidden">
           <Image
@@ -21,12 +21,8 @@ export default function ProjectSmallCard({ project, locale }: Props) {
           />
         </div>
       )}
-      <h3 className="font-bold text-lg">{title}</h3>
-      <ul className="flex flex-wrap gap-1 text-xs text-white mt-auto">
-        {stack.map((tech) => (
-          <li key={tech} className="bg-[#34c7f81A] text-[#34c7f8] px-2 py-0.5 rounded-[5px]">{tech}</li>
-        ))}
-      </ul>
+      <h3 className="text-[20px] font-bold leading-tight group-hover:text-accent transition-colors">{title}</h3>
+      <p className="text-[13px] text-muted mt-auto pt-3 border-t border-line">{stack.join(" · ")}</p>
     </Link>
   );
 }
