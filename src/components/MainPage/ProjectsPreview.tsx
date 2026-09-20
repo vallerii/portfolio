@@ -28,23 +28,23 @@ export default function ProjectsPreview({ locale, data, projects }: Props) {
       ref={containerRef}
       aria-labelledby="selected-work"
     >
-      <h2 id="selected-work" className="text-[12vw] font-bold mx-auto text-center uppercase">
+      <h2 id="selected-work" className="text-[11vw] font-bold mx-auto text-center uppercase tracking-[-0.035em] leading-[0.84]">
         {data.title}
       </h2>
-      <p className="text-[16px] lg:text-[24px] opacity-80 text-center max-w-[720px]">{data.subtitle}</p>
+      <p className="text-[17px] lg:text-[21px] text-muted text-center max-w-[640px] mt-[16px]">{data.subtitle}</p>
 
       <div className="sticky top-[10vh] md:top-[16vh] z-[-1] w-full overflow-hidden h-[80vh] flex justify-start">
         <motion.ul style={{ x }} transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }} className="flex gap-[10vw] px-[16px]">
           {projects.map((project) => (
             <li key={project.slug} className="min-w-[70vw] lg:min-w-[50vw] h-[60vh]">
               <Link href={`/${locale}/projects/${project.slug}`}
-                className="w-full h-full bg-neutral-800 rounded-xl flex items-center justify-center text-white text-2xl relative"
+                className="w-full h-full flex items-center justify-center relative"
               >
                 <Image src={project.imgUrl} alt={project.title} width={1000} height={900}
                   sizes="(min-width: 1024px) 50vw, 70vw"
-                  className="w-full h-full mx-auto object-cover rounded-xl" />
-                <span className="absolute bottom-[-10vh] right-[-20px] text-[20px] md:text-[35px] lg:text-[50px] font-[family-name:var(--font-jetBrains)] uppercase">
-                  {'<'}{project.title}{'/>'}
+                  className="w-full h-full mx-auto object-cover rounded-sm" />
+                <span className="absolute bottom-[-9vh] right-[-10px] text-[26px] md:text-[44px] lg:text-[64px] font-bold uppercase tracking-[-0.03em]">
+                  {project.title}
                 </span>
               </Link>
             </li>

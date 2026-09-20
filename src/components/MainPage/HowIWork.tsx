@@ -11,10 +11,10 @@ export default function HowIWork({ data }: Props) {
       id="how-i-work"
       className="text-white px-[16px] py-[80px] lg:py-[120px] max-w-[1232px] mx-auto w-full relative z-[5] mt-[-40vh] scroll-mt-[80px]"
     >
-      <h2 className="text-[38px] sm:text-[48px] lg:text-[54px] font-bold uppercase">{data.title}</h2>
-      <p className="text-[16px] lg:text-[24px] opacity-80 max-w-[640px] mt-[12px]">{data.subtitle}</p>
+      <h2 className="text-[11vw] lg:text-[7vw] font-bold uppercase tracking-[-0.03em] leading-[0.86]">{data.title}</h2>
+      <p className="text-[18px] lg:text-[24px] text-muted max-w-[640px] mt-[20px]">{data.subtitle}</p>
 
-      <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[40px] lg:mt-[60px]">
+      <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[48px] mt-[56px] lg:mt-[80px]">
         {data.steps.map((step, i) => (
           <motion.li
             key={step.title}
@@ -22,13 +22,13 @@ export default function HowIWork({ data }: Props) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="rounded-xl p-[20px] bg-[#001f41]/80 border border-white/10 flex flex-col gap-[8px]"
+            className="pt-[18px] border-t border-line flex flex-col gap-[10px]"
           >
-            <span className="font-[family-name:var(--font-jetBrains)] text-[#34c7f8] text-[14px]">
+            <span className="font-[family-name:var(--font-jetBrains)] text-accent text-[13px] tracking-[0.2em]">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <h3 className="text-[20px] font-bold uppercase">{step.title}</h3>
-            <p className="text-white/75">{step.text}</p>
+            <h3 className="text-[26px] lg:text-[32px] font-bold uppercase tracking-[-0.02em]">{step.title}</h3>
+            <p className="text-[16px] text-ink/70 leading-[1.55]">{step.text}</p>
           </motion.li>
         ))}
       </ol>

@@ -5,7 +5,8 @@ import { PERSON } from "@/lib/site";
 type Props = { data: Dictionary['contact'] };
 
 // !w-full: globals.css sets `a { width: fit-content }`, cards must fill their grid cell
-const card = "!w-full h-full bg-[#182C40] rounded-xl p-4 flex items-center gap-[12px] min-h-[72px] min-w-0 hover:bg-[#1f3a55] transition-colors";
+// !w-full: globals.css sets `a { width: fit-content }`
+const row = "!w-full flex items-center gap-[16px] py-[22px] border-b border-line text-[20px] lg:text-[26px] font-bold tracking-[-0.01em] hover:text-accent transition-colors";
 
 export default function ContactMe({ data }: Props) {
   return (
@@ -14,36 +15,36 @@ export default function ContactMe({ data }: Props) {
       id="contact"
       aria-labelledby="contact-title"
     >
-      <h2 id="contact-title" className="text-[32px] sm:text-[44px] lg:text-[54px] font-bold text-center uppercase max-w-[900px] mx-auto">
+      <h2 id="contact-title" className="text-[10vw] lg:text-[6vw] font-bold uppercase tracking-[-0.03em] leading-[0.86] max-w-[16ch]">
         {data.title}
       </h2>
-      <p className="text-[16px] lg:text-[20px] opacity-80 text-center mt-[12px]">{data.subtitle}</p>
+      <p className="text-[17px] lg:text-[21px] text-muted mt-[20px] max-w-[46ch]">{data.subtitle}</p>
 
-      <div className="mx-auto mt-[20px] md:mt-[40px] lg:mt-[60px] w-full max-w-[760px]">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-[20px] w-full">
+      <div className="mt-[40px] lg:mt-[64px] w-full">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-[64px] w-full">
           <li>
-            <a href={`mailto:${PERSON.email}`} className={card}>
+            <a href={`mailto:${PERSON.email}`} className={row}>
               <FaEnvelope aria-hidden="true" />
               <span className="min-w-0 break-all"><span className="sr-only">{data.email}: </span>{PERSON.email}</span>
             </a>
           </li>
           <li>
-            <a href={PERSON.telegram} target="_blank" rel="noopener noreferrer" className={card}>
+            <a href={PERSON.telegram} target="_blank" rel="noopener noreferrer" className={row}>
               <FaTelegramPlane aria-hidden="true" /> {data.telegram} {PERSON.telegramHandle}
             </a>
           </li>
           <li>
-            <a href={PERSON.linkedin} target="_blank" rel="noopener noreferrer" className={card}>
+            <a href={PERSON.linkedin} target="_blank" rel="noopener noreferrer" className={row}>
               <FaLinkedin aria-hidden="true" /> {data.linkedin}
             </a>
           </li>
           <li>
-            <a href={PERSON.github} target="_blank" rel="noopener noreferrer" className={card}>
+            <a href={PERSON.github} target="_blank" rel="noopener noreferrer" className={row}>
               <FaGithub aria-hidden="true" /> {data.github}
             </a>
           </li>
-          <li className="sm:col-span-2">
-            <a href={PERSON.cv} download className={`${card} bg-[#262D3C] justify-center font-bold uppercase`}>
+          <li className="md:col-span-2">
+            <a href={PERSON.cv} download className={`${row} uppercase text-accent`}>
               <FaDownload aria-hidden="true" /> {data.downloadCv}
             </a>
           </li>

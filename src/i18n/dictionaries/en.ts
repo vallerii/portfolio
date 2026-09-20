@@ -23,6 +23,8 @@ const en = {
   hero: {
     name: 'Valeriia Petropavlovska',
     tagline: 'Product-minded frontend developer — from idea to launched product.',
+    headline: 'From idea to launched product.',
+    role: 'Product-minded frontend developer',
     text: 'I take web products from a rough idea to production: shaping the concept, planning the structure, building on Next.js and TypeScript, and launching with SEO and performance in place. 3+ years, 20+ shipped projects for clients in Europe and Ukraine.',
     downloadCv: 'Download CV',
     contact: 'Get in touch',

@@ -14,14 +14,14 @@ const QuestionItem: React.FC<QuestionItemProps> = ({ item }) => {
   const answerId = useId();
 
   return (
-    <div className="flex py-[12px] items-center border-b border-[#747474] gap-2 hover:scale-105 transition-all duration-300">
+    <div className="flex py-[18px] items-center border-b border-line gap-2 transition-colors duration-300 hover:border-accent">
       <div className="flex flex-col justify-center w-full">
         <button
           type="button"
           aria-expanded={isOpen}
           aria-controls={answerId}
           onClick={() => setIsOpen(!isOpen)}
-          className="flex cursor-pointer text-left text-[16px] lg:text-[20px] font-[500] uppercase"
+          className="flex cursor-pointer text-left text-[20px] lg:text-[26px] font-bold uppercase tracking-[-0.01em]"
         >
           <span aria-hidden="true" className={`transition-transform duration-300 ${isOpen ? "rotate-90" : "rotate-0"}`}>
             {">"}
@@ -30,7 +30,7 @@ const QuestionItem: React.FC<QuestionItemProps> = ({ item }) => {
         </button>
         <p
           id={answerId}
-          className={`pt-[8px] text-[#A8A9B4] text-[16px] font-[400] pl-[24px] transition-all duration-500 overflow-hidden ${isOpen ? "max-h-400 opacity-100" : "max-h-0 opacity-0"}`}
+          className={`pt-[10px] text-muted text-[16px] lg:text-[17px] font-[400] pl-[28px] leading-[1.55] transition-all duration-500 overflow-hidden ${isOpen ? "max-h-400 opacity-100" : "max-h-0 opacity-0"}`}
         >
           {item.answer}
         </p>

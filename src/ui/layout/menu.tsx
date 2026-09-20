@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { localeTags, locales, type Locale } from "@/i18n/config";
+import Logo from "./Logo";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 type Props = { locale: Locale; nav: Dictionary["nav"] };
@@ -47,7 +48,10 @@ export default function Menu({ locale, nav }: Props) {
   }, [open]);
 
   return (
-    <header className="px-[16px] py-[20px] z-[50] flex justify-end items-center gap-[20px] sticky top-0">
+    <header className="px-[16px] py-[18px] z-[50] flex justify-between items-center gap-[20px] sticky top-0 w-full max-w-[1400px] mx-auto">
+      <Logo locale={locale} label={nav.home} />
+
+      <div className="flex items-center gap-[20px]">
       {/* Language switcher */}
       <nav aria-label={nav.language} className="flex gap-[8px] text-[14px] font-[family-name:var(--font-jetBrains)] z-[60]">
         {locales.map((l) => (
@@ -78,6 +82,8 @@ export default function Menu({ locale, nav }: Props) {
         <span className={`h-[2px] w-full bg-white transition-transform duration-300 ${open ? "-rotate-45 -translate-y-[11px]" : ""}`} />
       </button>
 
+      </div>
+
       {/* Menu */}
       <nav
         id="site-menu"
@@ -91,7 +97,7 @@ export default function Menu({ locale, nav }: Props) {
           flex flex-col gap-[24px]
           px-[32px] py-[80px]
           backdrop-blur-lg
-          bg-[linear-gradient(135deg,rgb(10,31,148,0.7)_0%,rgb(0,17,53,0.7)_100%)]
+          bg-[linear-gradient(135deg,rgba(14,51,39,0.92)_0%,rgba(4,20,15,0.96)_100%)] border-l border-line
           transform transition-transform transition-opacity duration-500 ease-out
           ${open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
         `}
